@@ -1,190 +1,117 @@
-# Standard libraries
-import pprint
+import re
+import copy
 import logging
-from typing import Any
 
-# Third-party libraries
 from pydantic import validate_call
-
-# Internal modules
-from .__version__ import __version__
-from . import _utils as utils
-from .config import MyClassConfigPM
 
 
 logger = logging.getLogger(__name__)
 
 
-class MyClass:
-    """A class to perform some operations on a list of float items.
+@validate_call
+def deep_merge(dict1: dict, dict2: dict) -> dict:
+    """Return a new dictionary that's the result of a deep merge of two dictionaries.
+    If there are conflicts, values from `dict2` will overwrite those in `dict1`.
 
-    Attributes:
-        items  (list[float]    ): List of float items to be processed.
-        config (MyClassConfigPM): Configuration for the module.
+    Args:
+        dict1 (dict, required): The base dictionary that will be merged.
+        dict2 (dict, required): The dictionary to merge into `dict1`.
 
-    Methods:
-        run(): Method to clean the items based on the threshold value.
-
+    Returns:
+        dict: The merged dictionary.
     """
 
-    @validate_call
-    def __init__(
-        self,
-        items: list[float] | None = None,
-        config: MyClassConfigPM | dict[str, Any] | None = None,
-        auto_run: bool = False,
-        **kwargs,
-    ) -> None:
-        """Initializer method for the MyClass class.
-
-        Args:
-            items  (list[float] | None                     , optional): List of float items to be processed.
-                                                                            Defaults to None.
-            config (MyClassConfigPM | dict[str, Any] | None, optional): Configuration for the module. Defaults to None.
-        """
-
-        logger.debug(
-            f"Initializing <{self.__class__.__name__}> object with '{__version__}' version..."
-        )
-        if not config:
-            config = MyClassConfigPM()
-
-        self.config = config
-        if kwargs:
-            self.config = self.config.model_copy(update=kwargs)
-
-        if items:
-            self.items = items
-        logger.debug(
-            f"Initialized <{self.__class__.__name__}> object with '{__version__}' version."
-        )
-
-        if auto_run:
-            self.run()
-
-    @validate_call
-    def run(
-        self,
-        items: list[float] | None = None,
-        threshold: float | None = None,
-    ) -> list[float]:
-        """Method to clean the items based on the threshold value.
-
-        Args:
-            items     (list[float] | None, optional): List of float items to be processed. Defaults to None.
-            threshold (float | None      , optional): Threshold value for the cleaning process. Defaults to None.
-
-        Raises:
-            RuntimeError: If `items` attribute is not set.
-
-        Returns:
-            list[float]: List of cleaned items.
-        """
-
-        if items:
-            self.items = items
-
-        if not hasattr(self, "items"):
-            raise RuntimeError(
-                "`items` attribute is not set, must provide a list of float items to be processed!"
-            )
-
-        if not threshold:
-            threshold = self.config.threshold
-
-        logger.debug(f"Cleaning items with threshold '{threshold}'...")
-        _clean_items = []
-        for _item in self.items:
-            if threshold <= _item:
-                _clean_items.append(_item)
-            else:
-                logger.debug(
-                    f"Item '{_item}' is below the threshold '{threshold}', removing it..."
-                )
-
-        logger.debug("Successfully cleaned items.")
-
-        self.items = _clean_items
-        return self.items
-
-    # ATTRIBUTES
-    # config
-    @property
-    def config(self) -> MyClassConfigPM:
-        try:
-            return self.__config
-        except AttributeError:
-            self.__config = MyClassConfigPM()
-
-        return self.__config
-
-    @config.setter
-    def config(self, config: MyClassConfigPM | dict[str, Any]) -> None:
-        if (not isinstance(config, MyClassConfigPM)) and (not isinstance(config, dict)):
-            raise TypeError(
-                f"`config` attribute type {type(config)} is invalid, must be a <class 'MyClassConfigPM'> or <dict>!"
-            )
-
-        if isinstance(config, dict):
-            config = MyClassConfigPM(**config)
-        elif isinstance(config, MyClassConfigPM):
-            config = config.model_copy(deep=True)
-
-        self.__config = config
-
-    # config
-
-    # items
-    @property
-    def items(self) -> list[float]:
-        try:
-            return self.__items
-        except AttributeError:
-            raise AttributeError("`items` attribute is not set!")
-
-    @items.setter
-    def items(self, items: list[float]) -> None:
-        if not isinstance(items, list):
-            raise TypeError(
-                f"`items` attribute type {type(items)} is invalid, must be a <class 'list'>!"
-            )
-
-        if (len(items) < self.config.min_length) or (
-            self.config.max_length < len(items)
+    _merged = copy.deepcopy(dict1)
+    for _key, _val in dict2.items():
+        if (
+            _key in _merged
+            and isinstance(_merged[_key], dict)
+            and isinstance(_val, dict)
         ):
-            raise ValueError(
-                f"`items` attribute length '{len(items)}' is too short or too long, "
-                f"must be between '{self.config.min_length}' and '{self.config.max_length}'!"
-            )
+            _merged[_key] = deep_merge(_merged[_key], _val)
+        else:
+            _merged[_key] = copy.deepcopy(_val)
 
-        for _item in items:
-            if not isinstance(_item, float):
-                raise TypeError(
-                    f"`items` attribute item type {type(_item)} is invalid, must be a <float>!"
-                )
-
-            if (_item < self.config.min_value) or (self.config.max_value < _item):
-                raise ValueError(
-                    f"`items` attribute item value '{_item}' is not in the allowed range, "
-                    f"must be between '{self.config.min_value}' and '{self.config.max_value}'!"
-                )
-
-        self.__items = items
-
-    # items
-    # ATTRIBUTES
-
-    # METHOD OVERRIDING
-    def __str__(self):
-        _self_dict = utils.clean_obj_dict(self.__dict__, self.__class__.__name__)
-        _self_str = f"{self.__class__.__name__}: {pprint.pformat(_self_dict)}"
-        return _self_str
-
-    def __repr__(self):
-        _self_repr = utils.obj_to_repr(self)
-        return _self_repr
-
-    # METHOD OVERRIDING
+    return _merged
 
 
-__all__ = ["MyClass"]
+@validate_call
+def camel_to_snake(val: str) -> str:
+    """Convert CamelCase to snake_case.
+
+    Args:
+        val (str): CamelCase string to convert.
+
+    Returns:
+        str: Converted snake_case string.
+    """
+
+    val = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", val)
+    val = re.sub("([a-z0-9])([A-Z])", r"\1_\2", val).lower()
+    return val
+
+
+@validate_call
+def clean_obj_dict(obj_dict: dict, cls_name: str) -> dict:
+    """Clean class name from object.__dict__ for str(object).
+
+    Args:
+        obj_dict (dict, required): Object dictionary by object.__dict__.
+        cls_name (str , required): Class name by cls.__name__.
+
+    Returns:
+        dict: Clean object dictionary.
+    """
+
+    try:
+        if not obj_dict:
+            raise ValueError("'obj_dict' argument value is empty!")
+
+        if not cls_name:
+            raise ValueError("'cls_name' argument value is empty!")
+    except ValueError as err:
+        logger.error(err)
+        raise
+
+    _self_dict = obj_dict.copy()
+    for _key in _self_dict.copy():
+        _class_prefix = f"_{cls_name}__"
+        if _key.startswith(_class_prefix):
+            _new_key = _key.replace(_class_prefix, "")
+            _self_dict[_new_key] = _self_dict.pop(_key)
+    return _self_dict
+
+
+@validate_call(config={"arbitrary_types_allowed": True})
+def obj_to_repr(obj: object) -> str:
+    """Modifying object default repr() to custom info.
+
+    Args:
+        obj (object, required): Any python object.
+
+    Returns:
+        str: String for repr() method.
+    """
+
+    try:
+        if not obj:
+            raise ValueError("'obj' argument value is empty!")
+    except ValueError as err:
+        logger.error(err)
+        raise
+
+    _self_repr = (
+        f"<{obj.__class__.__module__}.{obj.__class__.__name__} object at {hex(id(obj))}: "
+        + "{"
+        + f"{str(dir(obj)).replace('[', '').replace(']', '')}"
+        + "}>"
+    )
+    return _self_repr
+
+
+__all__ = [
+    "deep_merge",
+    "camel_to_snake",
+    "clean_obj_dict",
+    "obj_to_repr",
+]
