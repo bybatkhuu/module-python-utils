@@ -8,14 +8,10 @@
 
 ## ✨ Features
 
-- Python module/package
-- Configuration
-- Test
-- Build
-- Documentation
-- Scripts
-- Examples
-- CI/CD
+- Python utils
+- Validation utils
+- Datetime utils
+- File utils
 
 ---
 
@@ -75,11 +71,7 @@ git clone git@github.com:bybatkhuu/module.python-utils.git && \
 **OPTION A.** [**RECOMMENDED**] Install from **PyPi**:
 
 ```sh
-# Install from staging TestPyPi:
-pip install -i https://test.pypi.org/simple -U potato_utils
-
-# Or install from production PyPi:
-# pip install -U potato_utils
+pip install -U potato_utils
 ```
 
 **OPTION B.** Install latest version directly from **GitHub** repository:
@@ -136,47 +128,6 @@ cp -r ./src/potato_utils /some/path/project/
 [**`examples/simple/main.py`**](./examples/simple/main.py):
 
 ```python
-# Standard libraries
-import sys
-import logging
-
-# Internal modules
-from potato_utils import MyClass
-
-
-logger = logging.getLogger(__name__)
-
-
-def main() -> None:
-    logging.basicConfig(
-        stream=sys.stdout,
-        level=logging.INFO,
-        datefmt="%Y-%m-%d %H:%M:%S %z",
-        format="[%(asctime)s | %(levelname)s | %(filename)s:%(lineno)d]: %(message)s",
-    )
-
-    # Pre-defined variables (for customizing and testing)
-    _items = [0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-    _config = {
-        "min_length": 4,
-        "max_length": 10,
-        "min_value": 0.0,
-        "max_value": 1.0,
-        "threshold": 0.7,
-    }
-
-    # Main example code
-    logger.info(f"Items before cleaning: {_items}")
-    _my_object = MyClass(items=_items, config=_config)
-    _items = _my_object()
-    logger.info(f"Items after cleaning: {_items}")
-
-    logger.info("Done!\n")
-    return
-
-
-if __name__ == "__main__":
-    main()
 ```
 
 👍
@@ -188,12 +139,6 @@ if __name__ == "__main__":
 [**`templates/configs/config.yml`**](./templates/configs/config.yml):
 
 ```yaml
-potato_utils:
-  min_length: 2
-  max_length: 100
-  min_value: 0.0
-  max_value: 1.0
-  threshold: 0.5
 ```
 
 ### 🌎 Environment Variables
