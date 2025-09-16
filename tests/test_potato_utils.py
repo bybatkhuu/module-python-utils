@@ -11,7 +11,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def test_init(my_object):
+def test_init():
     logger.info("Testing initialization of 'potato_utils'...")
 
     logger.info("Done: Initialization of 'potato_utils'.\n")

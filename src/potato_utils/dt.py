@@ -50,11 +50,18 @@ def datetime_to_iso(
         warn_mode (WarnEnum, optional): Warning mode. Defaults to WarnEnum.IGNORE.
 
     Raises:
+        ValueError: If `sep` argument length is greater than 8.
         ValueError: If `dt` argument doesn't have any timezone info and `warn_mode` is set to WarnEnum.ERROR.
 
     Returns:
         str: Datetime string in ISO 8601 format.
     """
+
+    sep = sep.strip()
+    if 8 < len(sep):
+        raise ValueError(
+            f"`sep` argument length '{len(sep)}' is too long, must be less than or equal to 8!"
+        )
 
     if not dt.tzinfo:
         _message = "Not found any timezone info in `dt` argument, assuming it's UTC timezone..."
