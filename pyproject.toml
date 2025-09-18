@@ -3,12 +3,12 @@ requires = ["setuptools>=70.3.0,<81.0.0", "setuptools-scm>=8.0.4,<10.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "potato_utils"
+name = "potato_util"
 authors = [{ name = "Batkhuu Byambajav", email = "batkhuu10@gmail.com" }]
-description = "'potato_utils' is collection of simple useful utils package for python."
+description = "'potato_util' is collection of simple useful utils package for python."
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
-keywords = ["potato_utils", "utils", "utilities", "tools", "helpers"]
+keywords = ["potato_util", "utils", "utilities", "tools", "helpers"]
 license-files = ["LICEN[CS]E*"]
 classifiers = [
 	"Development Status :: 4 - Beta",
@@ -25,11 +25,11 @@ dynamic = ["version", "dependencies", "optional-dependencies"]
 
 # [tool.setuptools.packages.find]
 # where = ["src"]
-# include = ["potato_utils*"]
+# include = ["potato_util*"]
 # namespaces = false
 
 [tool.setuptools.dynamic]
-version = { attr = "potato_utils.__version__.__version__" }
+version = { attr = "potato_util.__version__.__version__" }
 dependencies = { file = "./requirements.txt" }
 optional-dependencies.async = { file = [
 	"./requirements/requirements.async.txt",

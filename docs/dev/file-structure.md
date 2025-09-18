@@ -28,7 +28,7 @@ project/
 |   |   ├── module_1/
 |   |   ├── module_2/
 |   |   └── .../
-|   └── potato_utils/            # Main CODEBASE of this project as a python module
+|   └── potato_util/            # Main CODEBASE of this project as a python module
 |       ├── __init__.py             # Initialize the module to be used as a package
 |       ├── __version__.py          # Version of the module (should be updated and used with each release)
 |       └── ...                     # Other main python files of this module

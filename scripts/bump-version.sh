@@ -19,7 +19,7 @@ fi
 
 ## --- Variables --- ##
 # Load from envrionment variables:
-VERSION_FILE_PATH="${VERSION_FILE_PATH:-./src/potato_utils/__version__.py}"
+VERSION_FILE_PATH="${VERSION_FILE_PATH:-./src/potato_util/__version__.py}"
 
 
 _BUMP_TYPE=""

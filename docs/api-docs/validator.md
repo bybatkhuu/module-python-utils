@@ -4,4 +4,4 @@ title: Validator Utilities
 
 # Validator Utilities
 
-::: src.potato_utils.validator
+::: src.potato_util.validator

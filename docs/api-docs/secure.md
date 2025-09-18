@@ -4,4 +4,4 @@ title: Secure Utilities
 
 # Secure Utilities
 
-::: src.potato_utils.secure
+::: src.potato_util.secure

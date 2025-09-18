@@ -46,7 +46,7 @@ git clone git@github.com:bybatkhuu/module.python-utils.git && \
 **OPTION A.** [**RECOMMENDED**] Install from **PyPi**:
 
 ```sh
-pip install -U potato_utils
+pip install -U potato-util
 ```
 
 **OPTION B.** Install latest version directly from **GitHub** repository:
@@ -78,10 +78,10 @@ pip install -e .[dev]
 
 ```sh
 # Install from .whl file:
-pip install ./potato_utils-[VERSION]-py3-none-any.whl
+pip install ./potato_util-[VERSION]-py3-none-any.whl
 
 # Or install from .tar.gz file:
-pip install ./potato_utils-[VERSION].tar.gz
+pip install ./potato_util-[VERSION].tar.gz
 ```
 
 **OPTION F.** Copy the **module** into the project directory (for **testing**):
@@ -91,7 +91,7 @@ pip install ./potato_utils-[VERSION].tar.gz
 pip install -r ./requirements.txt
 
 # Copy the module source code into the project:
-cp -r ./src/potato_utils [PROJECT_DIR]
+cp -r ./src/potato_util [PROJECT_DIR]
 # For example:
-cp -r ./src/potato_utils /some/path/project/
+cp -r ./src/potato_util /some/path/project/
 ```

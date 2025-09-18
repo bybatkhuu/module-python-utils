@@ -7,7 +7,7 @@ hide:
 
 # Introduction
 
-'potato_utils' is collection of simple useful utils package for python.
+'potato_util' is collection of simple useful utils package for python.
 
 ## ✨ Features
 

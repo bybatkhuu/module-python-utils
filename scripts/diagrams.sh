@@ -35,7 +35,7 @@ fi
 
 ## --- Variables --- ##
 # Load from envrionment variables:
-MODULE_NAME="${MODULE_NAME:-potato_utils}"
+MODULE_NAME="${MODULE_NAME:-potato_util}"
 MODULE_DIR="${MODULE_DIR:-./src/${MODULE_NAME}}"
 OUTPUT_DIR="${OUTPUT_DIR:-./docs/diagrams}"
 
