@@ -11,11 +11,10 @@ hide:
 
 ## ✨ Features
 
-- Python module/package
-- Configuration
-- Test
-- Build
-- Documentation
-- Scripts
-- Examples
-- CI/CD
+- Python utilities
+- Datetime utilities
+- File I/O utilities
+- HTTP utilities
+- Security utilities
+- Sanitation utilities
+- Validation utilities

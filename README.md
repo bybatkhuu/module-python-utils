@@ -8,10 +8,13 @@
 
 ## ✨ Features
 
-- Python utils
-- Validation utils
-- Datetime utils
-- File utils
+- Python utilities
+- Datetime utilities
+- File I/O utilities
+- HTTP utilities
+- Security utilities
+- Sanitation utilities
+- Validation utilities
 
 ---
 
@@ -133,13 +136,6 @@ cp -r ./src/potato_utils /some/path/project/
 👍
 
 ---
-
-## ⚙️ Configuration
-
-[**`templates/configs/config.yml`**](./templates/configs/config.yml):
-
-```yaml
-```
 
 ### 🌎 Environment Variables
 
