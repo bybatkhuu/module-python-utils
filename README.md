@@ -4,7 +4,7 @@
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bybatkhuu/module.python-utils/2.build-publish.yml?logo=GitHub)](https://github.com/bybatkhuu/module.python-utils/actions/workflows/2.build-publish.yml)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/bybatkhuu/module.python-utils?logo=GitHub&color=blue)](https://github.com/bybatkhuu/module.python-utils/releases)
 
-'potato_utils' is collection of useful utils package for python.
+'potato_utils' is collection of simple useful utils package for python.
 
 ## ✨ Features
 
