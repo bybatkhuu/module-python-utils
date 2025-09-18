@@ -5,7 +5,7 @@ import sys
 import logging
 
 # Internal modules
-# from potato_utils import io as io_utils
+# from potato_util import io as io_utils
 
 
 logger = logging.getLogger(__name__)
