@@ -1,4 +1,4 @@
-# Potato Utils (Python Utils)
+# Potato Util (Python Utils)
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bybatkhuu/module.python-utils/2.build-publish.yml?logo=GitHub)](https://github.com/bybatkhuu/module.python-utils/actions/workflows/2.build-publish.yml)
