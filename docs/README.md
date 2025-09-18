@@ -7,15 +7,14 @@ hide:
 
 # Introduction
 
-'potato_utils' is collection of useful utils package for python.
+'potato_utils' is collection of simple useful utils package for python.
 
 ## ✨ Features
 
-- Python module/package
-- Configuration
-- Test
-- Build
-- Documentation
-- Scripts
-- Examples
-- CI/CD
+- Python utilities
+- Datetime utilities
+- File I/O utilities
+- HTTP utilities
+- Security utilities
+- Sanitation utilities
+- Validation utilities

@@ -46,11 +46,7 @@ git clone git@github.com:bybatkhuu/module.python-utils.git && \
 **OPTION A.** [**RECOMMENDED**] Install from **PyPi**:
 
 ```sh
-# Install from staging TestPyPi:
-pip install -i https://test.pypi.org/simple -U potato_utils
-
-# Or install from production PyPi:
-# pip install -U potato_utils
+pip install -U potato_utils
 ```
 
 **OPTION B.** Install latest version directly from **GitHub** repository:
@@ -72,7 +68,7 @@ pip install -e .
 **OPTION D.** Install for **DEVELOPMENT** environment:
 
 ```sh
-pip install -r ./requirements/requirements.dev.txt
+pip install -e .[dev]
 ```
 
 **OPTION E.** Install from **pre-built release** files:

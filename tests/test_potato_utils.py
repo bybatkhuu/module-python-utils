@@ -1,28 +1,17 @@
 import logging
 
-import pytest
+# import pytest
 
-try:
-    from potato_utils import MyClass
-except ImportError:
-    from src.potato_utils import MyClass
+# try:
+#     from potato_utils import io as io_utils
+# except ImportError:
+#     from potato_utils import io as io_utils
 
 
 logger = logging.getLogger(__name__)
 
 
-@pytest.fixture
-def my_object():
-    _my_object = MyClass()
+def test_init():
+    logger.info("Testing initialization of 'potato_utils'...")
 
-    yield _my_object
-
-    del _my_object
-
-
-def test_init(my_object):
-    logger.info("Testing initialization of 'MyClass'...")
-
-    assert isinstance(my_object, MyClass)
-
-    logger.info("Done: Initialization of 'MyClass'.\n")
+    logger.info("Done: Initialization of 'potato_utils'.\n")

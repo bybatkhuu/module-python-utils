@@ -5,10 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "potato_utils"
 authors = [{ name = "Batkhuu Byambajav", email = "batkhuu10@gmail.com" }]
-description = "'potato_utils' is collection of useful utils package for python."
+description = "'potato_utils' is collection of simple useful utils package for python."
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
-keywords = ["potato_utils", "template", "module", "python", "package"]
+keywords = ["potato_utils", "utils", "utilities", "tools", "helpers"]
 license-files = ["LICEN[CS]E*"]
 classifiers = [
 	"Development Status :: 4 - Beta",
@@ -31,8 +31,32 @@ dynamic = ["version", "dependencies", "optional-dependencies"]
 [tool.setuptools.dynamic]
 version = { attr = "potato_utils.__version__.__version__" }
 dependencies = { file = "./requirements.txt" }
-optional-dependencies.extra = { file = [
-	"./requirements/requirements.extra.txt",
+optional-dependencies.async = { file = [
+	"./requirements/requirements.async.txt",
+] }
+optional-dependencies.fastapi = { file = [
+	"./requirements/requirements.fastapi.txt",
+] }
+optional-dependencies.all = { file = [
+	"./requirements/requirements.async.txt",
+	"./requirements/requirements.fastapi.txt",
+] }
+optional-dependencies.test = { file = [
+	"./requirements/requirements.async.txt",
+	"./requirements/requirements.fastapi.txt",
+	"./requirements/requirements.test.txt",
+] }
+optional-dependencies.build = { file = [
+	"./requirements/requirements.build.txt",
+] }
+optional-dependencies.docs = { file = ["./requirements/requirements.docs.txt"] }
+optional-dependencies.dev = { file = [
+	"./requirements/requirements.async.txt",
+	"./requirements/requirements.fastapi.txt",
+	"./requirements/requirements.test.txt",
+	"./requirements/requirements.build.txt",
+	"./requirements/requirements.docs.txt",
+	"./requirements/requirements.dev.txt",
 ] }
 
 # [tool.pyright]

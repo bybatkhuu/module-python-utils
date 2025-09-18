@@ -10,9 +10,7 @@ title: Sitemap
     - [Installation](../getting-started/installation.md)
     - [Configuration](../getting-started/configuration.md)
     - [Examples](../getting-started/examples.md)
-    - [Error Codes](../getting-started/error-codes.md)
 - API Documentation
-    - [MyClass](../api-docs/MyClass.md)
 - Development
     - [Test](../dev/test.md)
     - [Build](../dev/build.md)
@@ -43,7 +41,6 @@ title: Sitemap
     - [Benchmarks](../research/benchmarks.md)
     - [References](../research/references.md)
 - [Release Notes](../release-notes.md)
-- [Blog](../blog/index.md)
 - About
     - [FAQ](../about/faq.md)
     - [Authors](../about/authors.md)
