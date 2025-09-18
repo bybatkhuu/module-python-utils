@@ -30,7 +30,7 @@ def escape_html(val: str) -> str:
 
 
 @validate_call
-def espace_url(val: AnyHttpUrl) -> str:
+def escape_url(val: AnyHttpUrl) -> str:
     """Escape URL characters.
 
     Args:
@@ -80,6 +80,6 @@ def sanitize_special_chars(val: str, mode: str = "LOW") -> str:
 
 __all__ = [
     "escape_html",
-    "espace_url",
+    "escape_url",
     "sanitize_special_chars",
 ]

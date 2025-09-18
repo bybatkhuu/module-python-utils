@@ -107,7 +107,7 @@ def remove_dir(remove_dir: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
             logger.debug(_message)
 
     elif warn_mode == WarnEnum.ERROR:
-        raise OSError(errno.ENOENT, f"'{create_dir}' directory doesn't exist!")
+        raise OSError(errno.ENOENT, f"'{remove_dir}' directory doesn't exist!")
 
     return
 

@@ -1,22 +1,14 @@
 import time
 import logging
-from enum import Enum
 from zoneinfo import ZoneInfo
 from datetime import datetime, timezone, tzinfo, timedelta
 
 from pydantic import validate_call
 
-from .constants import WarnEnum
+from .constants import WarnEnum, TSUnitEnum
 
 
 logger = logging.getLogger(__name__)
-
-
-class TSUnitEnum(str, Enum):
-    SECONDS = "SECONDS"
-    MILLISECONDS = "MILLISECONDS"
-    MICROSECONDS = "MICROSECONDS"
-    NANOSECONDS = "NANOSECONDS"
 
 
 @validate_call(config={"arbitrary_types_allowed": True})
