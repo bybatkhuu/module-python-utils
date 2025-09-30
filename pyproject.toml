@@ -39,6 +39,8 @@ all = { file = [
 	"./requirements/requirements.async.txt",
 	"./requirements/requirements.fastapi.txt",
 ] }
+
+# Optional dependencies for DEVELOPMENT
 test = { file = [
 	"./requirements/requirements.async.txt",
 	"./requirements/requirements.fastapi.txt",
