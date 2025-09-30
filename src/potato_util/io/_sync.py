@@ -125,8 +125,8 @@ def remove_dirs(
     """Remove directories if `remove_dirs` exist.
 
     Args:
-        remove_dirs (list[str]    , required): Remove directory paths as list.
-        warn_mode   (WarnEnum| str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+        remove_dirs (list[str]     , required): Remove directory paths as list.
+        warn_mode   (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
                                                 Defaults to 'DEBUG'.
     """
 
@@ -141,8 +141,8 @@ def remove_file(file_path: str, warn_mode: WarnEnum | str = WarnEnum.DEBUG) -> N
     """Remove file if `file_path` exists.
 
     Args:
-        file_path (str          , required): Remove file path.
-        warn_mode (WarnEnum |str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+        file_path (str           , required): Remove file path.
+        warn_mode (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
                                                 Defaults to 'DEBUG'.
 
     Raises:
