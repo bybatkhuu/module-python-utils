@@ -3,6 +3,8 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bybatkhuu/module-python-utils/2.build-publish.yml?logo=GitHub)](https://github.com/bybatkhuu/module-python-utils/actions/workflows/2.build-publish.yml)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/bybatkhuu/module-python-utils?logo=GitHub&color=blue)](https://github.com/bybatkhuu/module-python-utils/releases)
+[![PyPI](https://img.shields.io/pypi/v/potato-util?logo=PyPi)](https://pypi.org/project/potato-util)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/potato-util?logo=Python)](https://docs.conda.io/en/latest/miniconda.html)
 
 'potato_util' is collection of simple useful utils package for python.
 
