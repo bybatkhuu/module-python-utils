@@ -8,7 +8,7 @@ def get_relative_url(val: Request | URL) -> str:
     """Get relative url only path with query params from request object or URL object.
 
     Args:
-        val (Union[Request, URL]): Request object or URL object to extract relative url.
+        val (Request | URL, required): Request object or URL object to extract relative url.
 
     Returns:
         str: Relative url only path with query params.

@@ -30,7 +30,7 @@ def escape_html(val: str) -> str:
 
 
 @validate_call
-def escape_url(val: AnyHttpUrl) -> str:
+def escape_url(val: AnyHttpUrl | str) -> str:
     """Escape URL characters.
 
     Args:
@@ -40,6 +40,9 @@ def escape_url(val: AnyHttpUrl) -> str:
         str: Escaped string.
     """
 
+    if isinstance(val, str):
+        val = AnyHttpUrl(val)
+
     _escaped = quote(str(val))
     return _escaped
 
@@ -47,13 +50,19 @@ def escape_url(val: AnyHttpUrl) -> str:
 @validate_call
 def sanitize_special_chars(val: str, mode: str = "LOW") -> str:
     """Sanitize special characters.
+    Available modes:
+        - "BASE" or "HTML": Basic HTML special characters.
+        - "LOW": Low-risk special characters.
+        - "MEDIUM": Medium-risk special characters.
+        - "HIGH", "SCRIPT", or "SQL": High-risk special characters.
+        - "STRICT": Strict mode, removes most special characters.
 
     Args:
         val  (str, required): String to sanitize.
         mode (str, optional): Sanitization mode. Defaults to "LOW".
 
     Raises:
-        ValueError: If `mode` is unsupported.
+        ValueError: If `mode` argument value is invalid.
 
     Returns:
         str: Sanitized string.
@@ -72,7 +81,7 @@ def sanitize_special_chars(val: str, mode: str = "LOW") -> str:
     elif mode == "STRICT":
         _pattern = SPECIAL_CHARS_STRICT_REGEX
     else:
-        raise ValueError(f"Unsupported mode: {mode}")
+        raise ValueError(f"`mode` argument value '{mode}' is invalid!")
 
     _sanitized = re.sub(pattern=_pattern, repl="", string=val)
     return _sanitized

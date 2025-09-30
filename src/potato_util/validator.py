@@ -18,7 +18,7 @@ def is_truthy(val: str | bool | int | float | None) -> bool:
     """Check if the value is truthy.
 
     Args:
-        val (Union[str, bool, int, float, None], required): Value to check.
+        val (str | bool | int | float | None, required): Value to check.
 
     Raises:
         ValueError: If `val` argument type is string and value is invalid.
@@ -45,7 +45,7 @@ def is_falsy(val: str | bool | int | float | None) -> bool:
     """Check if the value is falsy.
 
     Args:
-        val (Union[str, bool, int, float, None], required): Value to check.
+        val (str | bool | int | float | None, required): Value to check.
 
     Returns:
         bool: True if the value is falsy, False otherwise.
@@ -93,8 +93,8 @@ def is_valid(val: str, pattern: Pattern | str) -> bool:
     """Check if the string is valid with given pattern.
 
     Args:
-        val     (str                , required): String to check.
-        pattern (Union[Pattern, str], required): Pattern regex to check.
+        val     (str          , required): String to check.
+        pattern (Pattern | str, required): Pattern regex to check.
 
     Returns:
         bool: True if the string is valid with given pattern, False otherwise.
@@ -107,13 +107,19 @@ def is_valid(val: str, pattern: Pattern | str) -> bool:
 @validate_call
 def has_special_chars(val: str, mode: str = "LOW") -> bool:
     """Check if the string has special characters.
+    Available modes:
+        - "BASE" or "HTML": Basic HTML special characters.
+        - "LOW": Low-risk special characters.
+        - "MEDIUM": Medium-risk special characters.
+        - "HIGH", "SCRIPT", or "SQL": High-risk special characters.
+        - "STRICT": Strict mode, checks for most special characters.
 
     Args:
         val  (str, required): String to check.
         mode (str, optional): Check mode. Defaults to "LOW".
 
     Raises:
-        ValueError: If `mode` is unsupported.
+        ValueError: If `mode` argument value is invalid.
 
     Returns:
         bool: True if the string has special characters, False otherwise.
@@ -134,7 +140,7 @@ def has_special_chars(val: str, mode: str = "LOW") -> bool:
     elif mode == "STRICT":
         _pattern = SPECIAL_CHARS_STRICT_REGEX
     else:
-        raise ValueError(f"Unsupported mode: {mode}")
+        raise ValueError(f"`mode` argument value '{mode}' is invalid!")
 
     _has_special_chars = bool(re.search(pattern=_pattern, string=val))
     return _has_special_chars

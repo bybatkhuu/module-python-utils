@@ -14,14 +14,14 @@ logger = logging.getLogger(__name__)
 
 @validate_call
 async def async_create_dir(
-    create_dir: str, warn_mode: WarnEnum = WarnEnum.DEBUG
+    create_dir: str, warn_mode: WarnEnum | str = WarnEnum.DEBUG
 ) -> None:
     """Asynchronous create directory if `create_dir` doesn't exist.
 
     Args:
-        create_dir (str, required): Create directory path.
-        warn_mode  (str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
-                                        Defaults to 'DEBUG'.
+        create_dir (str           , required): Create directory path.
+        warn_mode  (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+                                                Defaults to 'DEBUG'.
 
     Raises:
         ValueError: If `create_dir` argument length is out of range.
@@ -35,6 +35,9 @@ async def async_create_dir(
             f"`create_dir` argument length {len(create_dir)} is out of range, "
             f"must be between 1 and {MAX_PATH_LENGTH} characters!"
         )
+
+    if isinstance(warn_mode, str):
+        warn_mode = WarnEnum(warn_mode.strip().upper())
 
     if not await aiofiles.os.path.isdir(create_dir):
         try:
@@ -66,14 +69,14 @@ async def async_create_dir(
 
 @validate_call
 async def async_remove_dir(
-    remove_dir: str, warn_mode: WarnEnum = WarnEnum.DEBUG
+    remove_dir: str, warn_mode: WarnEnum | str = WarnEnum.DEBUG
 ) -> None:
     """Asynchronous remove directory if `remove_dir` exists.
 
     Args:
-        remove_dir (str, required): Remove directory path.
-        warn_mode  (str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
-                                        Defaults to 'DEBUG'.
+        remove_dir (str           , required): Remove directory path.
+        warn_mode  (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+                                                Defaults to 'DEBUG'.
 
     Raises:
         ValueError: If `remove_dir` argument length is out of range.
@@ -87,6 +90,9 @@ async def async_remove_dir(
             f"`remove_dir` argument length {len(remove_dir)} is out of range, "
             f"must be between 1 and {MAX_PATH_LENGTH} characters!"
         )
+
+    if isinstance(warn_mode, str):
+        warn_mode = WarnEnum(warn_mode.strip().upper())
 
     if await aiofiles.os.path.isdir(remove_dir):
         try:
@@ -118,14 +124,14 @@ async def async_remove_dir(
 
 @validate_call
 async def async_remove_dirs(
-    remove_dirs: list[str], warn_mode: WarnEnum = WarnEnum.DEBUG
+    remove_dirs: list[str], warn_mode: WarnEnum | str = WarnEnum.DEBUG
 ) -> None:
     """Asynchronous remove directories if `remove_dirs` exists.
 
     Args:
-        remove_dirs (List[str], required): Remove directories paths as list.
-        warn_mode   (str      , optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
-                                                Defaults to 'DEBUG'.
+        remove_dirs (list[str]     , required): Remove directories paths as list.
+        warn_mode   (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+                                                    Defaults to 'DEBUG'.
     """
 
     for _remove_dir in remove_dirs:
@@ -136,14 +142,14 @@ async def async_remove_dirs(
 
 @validate_call
 async def async_remove_file(
-    file_path: str, warn_mode: WarnEnum = WarnEnum.DEBUG
+    file_path: str, warn_mode: WarnEnum | str = WarnEnum.DEBUG
 ) -> None:
     """Asynchronous remove file if `file_path` exists.
 
     Args:
-        file_path (str, required): Remove file path.
-        warn_mode (str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
-                                        Defaults to 'DEBUG'.
+        file_path (str           , required): Remove file path.
+        warn_mode (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+                                                Defaults to 'DEBUG'.
 
     Raises:
         ValueError: If `file_path` argument length is out of range.
@@ -157,6 +163,9 @@ async def async_remove_file(
             f"`file_path` argument length {len(file_path)} is out of range, "
             f"must be between 1 and {MAX_PATH_LENGTH} characters!"
         )
+
+    if isinstance(warn_mode, str):
+        warn_mode = WarnEnum(warn_mode.strip().upper())
 
     if await aiofiles.os.path.isfile(file_path):
         try:
@@ -188,13 +197,13 @@ async def async_remove_file(
 
 @validate_call
 async def async_remove_files(
-    file_paths: list[str], warn_mode: WarnEnum = WarnEnum.DEBUG
+    file_paths: list[str], warn_mode: WarnEnum | str = WarnEnum.DEBUG
 ) -> None:
     """Asynchronous remove files if `file_paths` exists.
 
     Args:
-        file_paths (List[str], required): Remove file paths as list.
-        warn_mode  (str      , optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+        file_paths (list[str]     , required): Remove file paths as list.
+        warn_mode  (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
                                                 Defaults to 'DEBUG'.
     """
 
@@ -209,15 +218,15 @@ async def async_get_file_checksum(
     file_path: str,
     hash_method: HashAlgoEnum = HashAlgoEnum.md5,
     chunk_size: int = 4096,
-    warn_mode: WarnEnum = WarnEnum.DEBUG,
+    warn_mode: WarnEnum | str = WarnEnum.DEBUG,
 ) -> str | None:
     """Asynchronous get file checksum.
 
     Args:
-        file_path   (str         , required): Target file path.
-        hash_method (HashAlgoEnum, optional): Hash method. Defaults to `HashAlgoEnum.md5`.
-        chunk_size  (int         , optional): Chunk size. Defaults to 4096.
-        warn_mode   (str         , optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+        file_path   (str           , required): Target file path.
+        hash_method (HashAlgoEnum  , optional): Hash method. Defaults to `HashAlgoEnum.md5`.
+        chunk_size  (int           , optional): Chunk size. Defaults to 4096.
+        warn_mode   (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
                                                     Defaults to 'DEBUG'.
 
     Raises:
@@ -240,6 +249,9 @@ async def async_get_file_checksum(
         raise ValueError(
             f"`chunk_size` argument value {chunk_size} is invalid, must be greater than 10!"
         )
+
+    if isinstance(warn_mode, str):
+        warn_mode = WarnEnum(warn_mode.strip().upper())
 
     _file_checksum: str | None = None
     if await aiofiles.os.path.isfile(file_path):
