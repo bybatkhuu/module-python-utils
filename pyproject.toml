@@ -64,8 +64,8 @@ optional-dependencies.dev = { file = [
 # venv = ".venv"
 
 [project.urls]
-Homepage = "https://github.com/bybatkhuu/module.python-utils"
+Homepage = "https://github.com/bybatkhuu/module-python-utils"
 Documentation = "https://pyutils-docs.bybatkhuu.dev"
-Repository = "https://github.com/bybatkhuu/module.python-utils.git"
-Issues = "https://github.com/bybatkhuu/module.python-utils/issues"
-Changelog = "https://github.com/bybatkhuu/module.python-utils/blob/main/CHANGELOG.md"
+Repository = "https://github.com/bybatkhuu/module-python-utils.git"
+Issues = "https://github.com/bybatkhuu/module-python-utils/issues"
+Changelog = "https://github.com/bybatkhuu/module-python-utils/blob/main/CHANGELOG.md"
