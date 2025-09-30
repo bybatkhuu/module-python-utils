@@ -13,8 +13,10 @@ hide:
 
 - Python utilities
 - Datetime utilities
-- File I/O utilities
-- HTTP utilities
-- Security utilities
+- Generator utilities
 - Sanitation utilities
+- Security utilities
 - Validation utilities
+- HTTP utilities
+- File I/O utilities
+- And more...
