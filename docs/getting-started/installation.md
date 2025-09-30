@@ -23,20 +23,20 @@ cd ~/workspaces/projects
 **OPTION A.** Clone the repository:
 
 ```sh
-git clone https://github.com/bybatkhuu/module.python-utils.git && \
-    cd module.python-utils
+git clone https://github.com/bybatkhuu/module-python-utils.git && \
+    cd module-python-utils
 ```
 
 **OPTION B.** Clone the repository (for **DEVELOPMENT**: git + ssh key):
 
 ```sh
-git clone git@github.com:bybatkhuu/module.python-utils.git && \
-    cd module.python-utils
+git clone git@github.com:bybatkhuu/module-python-utils.git && \
+    cd module-python-utils
 ```
 
 **OPTION C.** Download source code:
 
-1. Download archived **zip** file from [**releases**](https://github.com/bybatkhuu/module.python-utils/releases).
+1. Download archived **zip** file from [**releases**](https://github.com/bybatkhuu/module-python-utils/releases).
 2. Extract it into the projects directory.
 
 ### 2. 📦 Install the package
@@ -52,7 +52,7 @@ pip install -U potato-util
 **OPTION B.** Install latest version directly from **GitHub** repository:
 
 ```sh
-pip install git+https://github.com/bybatkhuu/module.python-utils.git
+pip install git+https://github.com/bybatkhuu/module-python-utils.git
 ```
 
 **OPTION C.** Install from the downloaded **source code**:
@@ -73,7 +73,7 @@ pip install -e .[dev]
 
 **OPTION E.** Install from **pre-built release** files:
 
-1. Download **`.whl`** or **`.tar.gz`** file from [**releases**](https://github.com/bybatkhuu/module.python-utils/releases)
+1. Download **`.whl`** or **`.tar.gz`** file from [**releases**](https://github.com/bybatkhuu/module-python-utils/releases)
 2. Install with pip:
 
 ```sh

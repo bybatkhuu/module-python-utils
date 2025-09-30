@@ -13,13 +13,13 @@ logger = logging.getLogger(__name__)
 
 
 @validate_call
-def create_dir(create_dir: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
+def create_dir(create_dir: str, warn_mode: WarnEnum | str = WarnEnum.DEBUG) -> None:
     """Create directory if `create_dir` doesn't exist.
 
     Args:
-        create_dir (str, required): Create directory path.
-        warn_mode  (str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
-                                        Defaults to 'DEBUG'.
+        create_dir (str           , required): Create directory path.
+        warn_mode  (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+                                                Defaults to 'DEBUG'.
 
     Raises:
         ValueError: If `create_dir` argument length is out of range.
@@ -33,6 +33,9 @@ def create_dir(create_dir: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
             f"`create_dir` argument length {len(create_dir)} is out of range, "
             f"must be between 1 and {MAX_PATH_LENGTH} characters!"
         )
+
+    if isinstance(warn_mode, str):
+        warn_mode = WarnEnum(warn_mode.strip().upper())
 
     if not os.path.isdir(create_dir):
         try:
@@ -63,13 +66,13 @@ def create_dir(create_dir: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
 
 
 @validate_call
-def remove_dir(remove_dir: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
+def remove_dir(remove_dir: str, warn_mode: WarnEnum | str = WarnEnum.DEBUG) -> None:
     """Remove directory if `remove_dir` exists.
 
     Args:
-        remove_dir (str, required): Remove directory path.
-        warn_mode  (str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
-                                        Defaults to 'DEBUG'.
+        remove_dir (str           , required): Remove directory path.
+        warn_mode  (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+                                                Defaults to 'DEBUG'.
 
     Raises:
         ValueError: If `remove_dir` argument length is out of range.
@@ -83,6 +86,9 @@ def remove_dir(remove_dir: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
             f"`remove_dir` argument length {len(remove_dir)} is out of range, "
             f"must be between 1 and {MAX_PATH_LENGTH} characters!"
         )
+
+    if isinstance(warn_mode, str):
+        warn_mode = WarnEnum(warn_mode.strip().upper())
 
     if os.path.isdir(remove_dir):
         try:
@@ -113,12 +119,14 @@ def remove_dir(remove_dir: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
 
 
 @validate_call
-def remove_dirs(remove_dirs: list[str], warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
+def remove_dirs(
+    remove_dirs: list[str], warn_mode: WarnEnum | str = WarnEnum.DEBUG
+) -> None:
     """Remove directories if `remove_dirs` exist.
 
     Args:
-        remove_dirs (List[str], required): Remove directory paths as list.
-        warn_mode   (str      , optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+        remove_dirs (list[str]     , required): Remove directory paths as list.
+        warn_mode   (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
                                                 Defaults to 'DEBUG'.
     """
 
@@ -129,13 +137,13 @@ def remove_dirs(remove_dirs: list[str], warn_mode: WarnEnum = WarnEnum.DEBUG) ->
 
 
 @validate_call
-def remove_file(file_path: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
+def remove_file(file_path: str, warn_mode: WarnEnum | str = WarnEnum.DEBUG) -> None:
     """Remove file if `file_path` exists.
 
     Args:
-        file_path (str, required): Remove file path.
-        warn_mode (str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
-                                        Defaults to 'DEBUG'.
+        file_path (str           , required): Remove file path.
+        warn_mode (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+                                                Defaults to 'DEBUG'.
 
     Raises:
         ValueError: If `file_path` argument length is out of range.
@@ -149,6 +157,9 @@ def remove_file(file_path: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
             f"`file_path` argument length {len(file_path)} is out of range, "
             f"must be between 1 and {MAX_PATH_LENGTH} characters!"
         )
+
+    if isinstance(warn_mode, str):
+        warn_mode = WarnEnum(warn_mode.strip().upper())
 
     if os.path.isfile(file_path):
         try:
@@ -179,12 +190,14 @@ def remove_file(file_path: str, warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
 
 
 @validate_call
-def remove_files(file_paths: list[str], warn_mode: WarnEnum = WarnEnum.DEBUG) -> None:
+def remove_files(
+    file_paths: list[str], warn_mode: WarnEnum | str = WarnEnum.DEBUG
+) -> None:
     """Remove files if `file_paths` exist.
 
     Args:
-        file_paths (List[str], required): Remove file paths as list.
-        warn_mode  (str      , optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+        file_paths (list[str]     , required): Remove file paths as list.
+        warn_mode  (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
                                                 Defaults to 'DEBUG'.
     """
 
@@ -199,16 +212,16 @@ def get_file_checksum(
     file_path: str,
     hash_method: HashAlgoEnum = HashAlgoEnum.md5,
     chunk_size: int = 4096,
-    warn_mode: WarnEnum = WarnEnum.DEBUG,
+    warn_mode: WarnEnum | str = WarnEnum.DEBUG,
 ) -> str | None:
     """Get file checksum.
 
     Args:
-        file_path   (str         , required): Target file path.
-        hash_method (HashAlgoEnum, optional): Hash method. Defaults to `HashAlgoEnum.md5`.
-        chunk_size  (int         , optional): Chunk size. Defaults to 4096.
-        warn_mode   (str         , optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
-                                                Defaults to 'DEBUG'.
+        file_path   (str           , required): Target file path.
+        hash_method (HashAlgoEnum  , optional): Hash method. Defaults to `HashAlgoEnum.md5`.
+        chunk_size  (int           , optional): Chunk size. Defaults to 4096.
+        warn_mode   (WarnEnum | str, optional): Warning message mode, for example: 'ERROR', 'ALWAYS', 'DEBUG', 'IGNORE'.
+                                                    Defaults to 'DEBUG'.
 
     Raises:
         ValueError: If `file_path` argument length is out of range.
@@ -230,6 +243,9 @@ def get_file_checksum(
         raise ValueError(
             f"`chunk_size` argument value {chunk_size} is invalid, must be greater than 10!"
         )
+
+    if isinstance(warn_mode, str):
+        warn_mode = WarnEnum(warn_mode.strip().upper())
 
     _file_checksum: str | None = None
     if os.path.isfile(file_path):

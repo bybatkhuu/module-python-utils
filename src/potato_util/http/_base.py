@@ -34,7 +34,9 @@ def get_http_status(status_code: int) -> tuple[HTTPStatus, bool]:
         elif (500 <= status_code) and (status_code < 600):
             status_code = 500
         else:
-            raise ValueError(f"Invalid HTTP status code: '{status_code}'!")
+            raise ValueError(
+                f"`status_code` argument value '{status_code}' is invalid, must be in range 100-599!",
+            )
 
         _http_status = HTTPStatus(status_code)
 
