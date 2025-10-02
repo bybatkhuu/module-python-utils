@@ -1,3 +1,5 @@
+import os
+import sys
 import re
 import copy
 import logging
@@ -51,7 +53,33 @@ def camel_to_snake(val: str) -> str:
     return val
 
 
+@validate_call
+def get_slug_name(file_path: str | None = None) -> str:
+    """Slugify the file name from the given file path or the current script's file path.
+
+    Args:
+        file_path (str | None, optional): The file path to slugify. If None, uses the current script's file path.
+                                            Defaults to None.
+
+    Returns:
+        str: The slugified file name.
+    """
+
+    if not file_path:
+        file_path = sys.argv[0]
+
+    _slug_name = (
+        os.path.splitext(os.path.basename(file_path))[0]
+        .strip()
+        .replace(" ", "-")
+        .replace("_", "-")
+        .lower()
+    )
+    return _slug_name
+
+
 __all__ = [
     "deep_merge",
     "camel_to_snake",
+    "get_slug_name",
 ]
