@@ -6,6 +6,8 @@ import logging
 
 from pydantic import validate_call
 
+from .validator import is_truthy
+
 
 logger = logging.getLogger(__name__)
 
@@ -78,8 +80,28 @@ def get_slug_name(file_path: str | None = None) -> str:
     return _slug_name
 
 
+def is_debug_mode() -> bool:
+    """Check if the application is running in debug mode based on environment variables.
+
+    Returns:
+        bool: True if in debug mode, False otherwise.
+    """
+
+    _is_debug = False
+    _debug = os.getenv("DEBUG", "").strip().lower()
+    if _debug and is_truthy(_debug):
+        _is_debug = True
+
+    _env = os.getenv("ENV", "").strip().lower()
+    if (_env == "development") and (_debug == ""):
+        _is_debug = True
+
+    return _is_debug
+
+
 __all__ = [
     "deep_merge",
     "camel_to_snake",
     "get_slug_name",
+    "is_debug_mode",
 ]
