@@ -1,10 +1,27 @@
+# noqa: E402
+
 import os
+import sys
+import json
 import errno
 import shutil
 import hashlib
 import logging
+import configparser
+from pathlib import Path
+from typing import Any
 
+_binary_toml = False
+if sys.version_info >= (3, 11):
+    import tomllib  # type: ignore
+
+    _binary_toml = True
+else:
+    import toml as tomllib  # type: ignore
+
+import yaml
 from pydantic import validate_call
+
 
 from ..constants import WarnEnum, HashAlgoEnum, MAX_PATH_LENGTH
 
@@ -270,6 +287,185 @@ def get_file_checksum(
     return _file_checksum
 
 
+@validate_call
+def read_yaml_file(file_path: str | Path) -> dict[str, Any]:
+    """Read YAML file.
+
+    Args:
+        file_path (str | Path, required): YAML file path.
+
+    Raises:
+        FileNotFoundError: If YAML file is not found.
+        Exception        : If failed to read YAML file.
+
+    Returns:
+        dict[str, Any]: YAML file data as dictionary.
+    """
+
+    _data: dict[str, Any] = {}
+
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+
+    if not os.path.isfile(file_path):
+        raise FileNotFoundError(f"Not found '{file_path}' YAML file!")
+
+    try:
+        with open(file_path, encoding="utf-8") as _file:
+            _data = yaml.safe_load(_file) or {}
+    except Exception:
+        logger.error(f"Failed to read '{file_path}' YAML file!")
+        raise
+
+    return _data
+
+
+@validate_call
+def read_json_file(file_path: str | Path) -> dict[str, Any]:
+    """Read JSON file.
+
+    Args:
+        file_path (str | Path, required): JSON file path.
+
+    Raises:
+        FileNotFoundError: If JSON file is not found.
+        Exception        : If failed to read JSON file.
+
+    Returns:
+        dict[str, Any]: JSON file data as dictionary.
+    """
+
+    _data: dict[str, Any] = {}
+
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+
+    if not os.path.isfile(file_path):
+        raise FileNotFoundError(f"Not found '{file_path}' JSON file!")
+
+    try:
+        with open(file_path, encoding="utf-8") as _file:
+            _data = json.load(_file) or {}
+    except Exception:
+        logger.error(f"Failed to read '{file_path}' JSON file!")
+        raise
+
+    return _data
+
+
+@validate_call
+def read_toml_file(file_path: str | Path) -> dict[str, Any]:
+    """Read TOML file.
+
+    Args:
+        file_path (str | Path, required): TOML file path.
+
+    Raises:
+        FileNotFoundError: If TOML file is not found.
+        Exception        : If failed to read TOML file.
+
+    Returns:
+        dict[str, Any]: TOML file data as dictionary.
+    """
+
+    _data: dict[str, Any] = {}
+
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+
+    if not os.path.isfile(file_path):
+        raise FileNotFoundError(f"Not found '{file_path}' TOML file!")
+
+    try:
+        if _binary_toml:
+            with open(file_path, "rb") as _file:
+                _data = tomllib.load(_file) or {}  # type: ignore
+        else:
+            with open(file_path, encoding="utf-8") as _file:
+                _data = tomllib.load(_file) or {}  # type: ignore
+    except Exception:
+        logger.error(f"Failed to read '{file_path}' TOML file!")
+        raise
+
+    return _data
+
+
+@validate_call
+def read_ini_file(file_path: str | Path) -> dict[str, Any]:
+    """Read INI config file.
+
+    Args:
+        file_path (str | Path, required): INI config file path.
+
+    Raises:
+        FileNotFoundError: If INI config file is not found.
+        Exception        : If failed to read INI config file.
+
+    Returns:
+        dict[str, Any]: INI config file data as dictionary.
+    """
+
+    _config: dict[str, Any] = {}
+
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+
+    if not os.path.isfile(file_path):
+        raise FileNotFoundError(f"Not found '{file_path}' INI config file!")
+
+    try:
+        _config_parser = configparser.ConfigParser()
+        _config_parser.read(file_path)
+        for _section in _config_parser.sections():
+            _config[_section] = dict(_config_parser.items(_section))
+
+    except Exception:
+        logger.error(f"Failed to read '{file_path}' INI config file!")
+        raise
+
+    return _config
+
+
+@validate_call
+def read_config_file(config_path: str | Path) -> dict[str, Any]:
+    """Read config file (YAML, JSON, TOML, INI).
+
+    Args:
+        config_path (str | Path, required): Config file path.
+
+    Raises:
+        FileNotFoundError: If config file is not found.
+        ValueError       : If config file format is not supported.
+
+    Returns:
+        dict[str, Any]: Config file data as dictionary.
+    """
+
+    _config: dict[str, Any] = {}
+
+    if isinstance(config_path, str):
+        config_path = Path(config_path)
+
+    if not os.path.isfile(config_path):
+        raise FileNotFoundError(f"Not found '{config_path}' config file!")
+
+    _suffix = config_path.suffix.lower()
+    if _suffix in (".yaml", ".yml"):
+        _config = read_yaml_file(file_path=config_path)
+    elif _suffix == ".json":
+        _config = read_json_file(file_path=config_path)
+    elif _suffix == ".toml":
+        _config = read_toml_file(file_path=config_path)
+    elif _suffix in (".ini", ".cfg"):
+        _config = read_ini_file(file_path=config_path)
+    else:
+        raise ValueError(
+            f"Unsupported config file format '{config_path.suffix}' for '{config_path}'!"
+        )
+
+    return _config
+
+
 __all__ = [
     "create_dir",
     "remove_dir",
@@ -277,4 +473,9 @@ __all__ = [
     "remove_file",
     "remove_files",
     "get_file_checksum",
+    "read_yaml_file",
+    "read_json_file",
+    "read_toml_file",
+    "read_ini_file",
+    "read_config_file",
 ]

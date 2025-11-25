@@ -133,7 +133,11 @@ repos:
       - id: flake8
         name: "🐍 flake8 - Lint python code"
         files: \.pyi?$
-        args: ["--max-line-length=120"]
+        args:
+          [
+            "--max-line-length=120",
+            "--per-file-ignores=src/potato_util/io/_sync.py:E402,src/potato_util/io/_async.py:E402",
+          ]
 
   - repo: https://github.com/PyCQA/bandit
     rev: 1.8.6
