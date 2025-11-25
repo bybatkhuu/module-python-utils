@@ -292,7 +292,7 @@ async def async_get_file_checksum(
 
 @validate_call
 async def async_read_yaml_file(file_path: str | Path) -> dict[str, Any]:
-    """Read YAML file.
+    """Asynchronous read YAML file.
 
     Args:
         file_path (str | Path, required): YAML file path.
@@ -326,7 +326,7 @@ async def async_read_yaml_file(file_path: str | Path) -> dict[str, Any]:
 
 @validate_call
 async def async_read_json_file(file_path: str | Path) -> dict[str, Any]:
-    """Read JSON file.
+    """Asynchronous read JSON file.
 
     Args:
         file_path (str | Path, required): JSON file path.
@@ -360,7 +360,7 @@ async def async_read_json_file(file_path: str | Path) -> dict[str, Any]:
 
 @validate_call
 async def async_read_toml_file(file_path: str | Path) -> dict[str, Any]:
-    """Read TOML file.
+    """Asynchronous read TOML file.
 
     Args:
         file_path (str | Path, required): TOML file path.
@@ -401,7 +401,7 @@ async def async_read_toml_file(file_path: str | Path) -> dict[str, Any]:
 
 @validate_call
 async def async_read_ini_file(file_path: str | Path) -> dict[str, Any]:
-    """Read INI config file.
+    """Asynchronous read INI config file.
 
     Args:
         file_path (str | Path, required): INI config file path.
@@ -441,7 +441,7 @@ async def async_read_ini_file(file_path: str | Path) -> dict[str, Any]:
 
 @validate_call
 async def async_read_config_file(config_path: str | Path) -> dict[str, Any]:
-    """Read config file (YAML, JSON, TOML, INI).
+    """Asynchronous read config file (YAML, JSON, TOML, INI).
 
     Args:
         config_path (str | Path, required): Config file path.
