@@ -302,7 +302,7 @@ def read_yaml_file(file_path: str | Path) -> dict[str, Any]:
         dict[str, Any]: YAML file data as dictionary.
     """
 
-    _data: dict[str, str] = {}
+    _data: dict[str, Any] = {}
 
     if isinstance(file_path, str):
         file_path = Path(file_path)

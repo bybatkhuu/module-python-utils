@@ -386,11 +386,12 @@ async def async_read_toml_file(file_path: str | Path) -> dict[str, Any]:
         if _binary_toml:
             async with aiofiles.open(file_path, "rb") as _file:
                 _content = await _file.read()  # type: ignore
+                _data = tomllib.load(_content) or {}
         else:
             async with aiofiles.open(file_path, "r", encoding="utf-8") as _file:
                 _content = await _file.read()  # type: ignore
+                _data = tomllib.loads(_content) or {}
 
-        _data = tomllib.loads(_content) or {}
     except Exception:
         logger.error(f"Failed to read '{file_path}' TOML file!")
         raise
@@ -440,8 +441,20 @@ async def async_read_ini_file(file_path: str | Path) -> dict[str, Any]:
 
 @validate_call
 async def async_read_config_file(config_path: str | Path) -> dict[str, Any]:
+    """Read config file (YAML, JSON, TOML, INI).
 
-    _config: dict[str, str] = {}
+    Args:
+        config_path (str | Path, required): Config file path.
+
+    Raises:
+        FileNotFoundError: If config file is not found.
+        ValueError        : If config file format is not supported.
+
+    Returns:
+        dict[str, Any]: Config file data as dictionary.
+    """
+
+    _config: dict[str, Any] = {}
 
     if isinstance(config_path, str):
         config_path = Path(config_path)
