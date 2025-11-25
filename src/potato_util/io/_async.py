@@ -1,7 +1,21 @@
+import sys
+import json
 import errno
 import hashlib
 import logging
+import configparser
+from pathlib import Path
+from typing import Any
 
+_binary_toml = False
+if sys.version_info >= (3, 11):
+    import tomllib  # type: ignore
+
+    _binary_toml = True
+else:
+    import toml as tomllib  # type: ignore
+
+import yaml
 import aioshutil
 import aiofiles.os
 from pydantic import validate_call
@@ -276,6 +290,182 @@ async def async_get_file_checksum(
     return _file_checksum
 
 
+@validate_call
+async def async_read_yaml_file(file_path: str | Path) -> dict[str, Any]:
+    """Read YAML file.
+
+    Args:
+        file_path (str | Path, required): YAML file path.
+
+    Raises:
+        FileNotFoundError: If YAML file is not found.
+        Exception        : If failed to read YAML file.
+
+    Returns:
+        dict[str, Any]: YAML file data as dictionary.
+    """
+
+    _data: dict[str, Any] = {}
+
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+
+    if not await aiofiles.os.path.isfile(file_path):
+        raise FileNotFoundError(f"Not found '{file_path}' YAML file!")
+
+    try:
+        async with aiofiles.open(file_path, "r", encoding="utf-8") as _file:
+            _content = await _file.read()
+            _data = yaml.safe_load(_content) or {}
+    except Exception:
+        logger.error(f"Failed to read '{file_path}' YAML file!")
+        raise
+
+    return _data
+
+
+@validate_call
+async def async_read_json_file(file_path: str | Path) -> dict[str, Any]:
+    """Read JSON file.
+
+    Args:
+        file_path (str | Path, required): JSON file path.
+
+    Raises:
+        FileNotFoundError: If JSON file is not found.
+        Exception        : If failed to read JSON file.
+
+    Returns:
+        dict[str, Any]: JSON file data as dictionary.
+    """
+
+    _data: dict[str, Any] = {}
+
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+
+    if not await aiofiles.os.path.isfile(file_path):
+        raise FileNotFoundError(f"Not found '{file_path}' JSON file!")
+
+    try:
+        async with aiofiles.open(file_path, "r", encoding="utf-8") as _file:
+            _content = await _file.read()
+            _data = json.loads(_content) or {}
+    except Exception:
+        logger.error(f"Failed to read '{file_path}' JSON file!")
+        raise
+
+    return _data
+
+
+@validate_call
+async def async_read_toml_file(file_path: str | Path) -> dict[str, Any]:
+    """Read TOML file.
+
+    Args:
+        file_path (str | Path, required): TOML file path.
+
+    Raises:
+        FileNotFoundError: If TOML file is not found.
+        Exception        : If failed to read TOML file.
+
+    Returns:
+        dict[str, Any]: TOML file data as dictionary.
+    """
+
+    _data: dict[str, Any] = {}
+
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+
+    if not await aiofiles.os.path.isfile(file_path):
+        raise FileNotFoundError(f"Not found '{file_path}' TOML file!")
+
+    try:
+        _content: str = ""
+        if _binary_toml:
+            async with aiofiles.open(file_path, "rb") as _file:
+                _content = await _file.read()  # type: ignore
+        else:
+            async with aiofiles.open(file_path, "r", encoding="utf-8") as _file:
+                _content = await _file.read()  # type: ignore
+
+        _data = tomllib.loads(_content) or {}
+    except Exception:
+        logger.error(f"Failed to read '{file_path}' TOML file!")
+        raise
+
+    return _data
+
+
+@validate_call
+async def async_read_ini_file(file_path: str | Path) -> dict[str, Any]:
+    """Read INI config file.
+
+    Args:
+        file_path (str | Path, required): INI config file path.
+
+    Raises:
+        FileNotFoundError: If INI config file is not found.
+        Exception        : If failed to read INI config file.
+
+    Returns:
+        dict[str, Any]: INI config file data as dictionary.
+    """
+
+    _config: dict[str, Any] = {}
+
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+
+    if not await aiofiles.os.path.isfile(file_path):
+        raise FileNotFoundError(f"Not found '{file_path}' INI config file!")
+
+    try:
+        _content: str = ""
+        async with aiofiles.open(file_path, "r", encoding="utf-8") as _file:
+            _content = await _file.read()
+
+        _config_parser = configparser.ConfigParser()
+        _config_parser.read_string(_content)
+        for _section in _config_parser.sections():
+            _config[_section] = dict(_config_parser.items(_section))
+
+    except Exception:
+        logger.error(f"Failed to read '{file_path}' INI config file!")
+        raise
+
+    return _config
+
+
+@validate_call
+async def async_read_config_file(config_path: str | Path) -> dict[str, Any]:
+
+    _config: dict[str, str] = {}
+
+    if isinstance(config_path, str):
+        config_path = Path(config_path)
+
+    if not await aiofiles.os.path.isfile(config_path):
+        raise FileNotFoundError(f"Not found '{config_path}' config file!")
+
+    _suffix = config_path.suffix.lower()
+    if _suffix in (".yaml", ".yml"):
+        _config = await async_read_yaml_file(config_path)
+    elif _suffix == ".json":
+        _config = await async_read_json_file(config_path)
+    elif _suffix == ".toml":
+        _config = await async_read_toml_file(config_path)
+    elif _suffix in (".ini", ".cfg"):
+        _config = await async_read_ini_file(config_path)
+    else:
+        raise ValueError(
+            f"Unsupported config file format '{_suffix}' for '{config_path}'!"
+        )
+
+    return _config
+
+
 __all__ = [
     "async_create_dir",
     "async_remove_dir",
@@ -283,4 +473,9 @@ __all__ = [
     "async_remove_file",
     "async_remove_files",
     "async_get_file_checksum",
+    "async_read_yaml_file",
+    "async_read_json_file",
+    "async_read_toml_file",
+    "async_read_ini_file",
+    "async_read_config_file",
 ]
