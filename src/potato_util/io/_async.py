@@ -4,6 +4,7 @@ import errno
 import hashlib
 import logging
 import configparser
+from io import BytesIO
 from pathlib import Path
 from typing import Any
 
@@ -382,15 +383,16 @@ async def async_read_toml_file(file_path: str | Path) -> dict[str, Any]:
         raise FileNotFoundError(f"Not found '{file_path}' TOML file!")
 
     try:
-        _content: str = ""
         if _binary_toml:
+            # Python 3.11+ tomllib.load() requires a binary file-like object
             async with aiofiles.open(file_path, "rb") as _file:
-                _content = await _file.read()  # type: ignore
+                _content = await _file.read()
+            _data = tomllib.load(BytesIO(_content)) or {}
         else:
+            # Third-party toml library uses loads() with string
             async with aiofiles.open(file_path, "r", encoding="utf-8") as _file:
-                _content = await _file.read()  # type: ignore
-
-        _data = tomllib.loads(_content) or {}
+                _content = await _file.read()
+            _data = tomllib.loads(_content) or {}
     except Exception:
         logger.error(f"Failed to read '{file_path}' TOML file!")
         raise
