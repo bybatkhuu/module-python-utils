@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.2.0 (2025-11-25)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.2.0 -->
+
+## What's Changed
+### ✨ Features
+* feat: add async and sync functions to read YAML, JSON, TOML, and INI … by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/9
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.1.0...v0.2.0
+
 ## v0.1.0 (2025-11-23)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.1.0 -->
