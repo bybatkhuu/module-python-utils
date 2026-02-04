@@ -6,6 +6,19 @@ hide:
 
 # 📌 Release Notes
 
+## v0.2.1 (2026-02-04)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.2.1 -->
+
+## What's Changed
+### ✨ Features
+* feat: add support for reading multiple config file formats asynchrono… by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/12
+### 📦 Dependencies
+* chore(deps): update mkdocstrings[python] requirement from <1.0.0,>=0.24.3 to >=0.24.3,<2.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/11
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.2.0...v0.2.1
+
 ## v0.2.0 (2025-11-25)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.2.0 -->
