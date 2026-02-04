@@ -1,5 +1,7 @@
+import os
 import sys
 import json
+import glob
 import errno
 import hashlib
 import logging
@@ -20,7 +22,8 @@ import aioshutil
 import aiofiles.os
 from pydantic import validate_call
 
-from ..constants import WarnEnum, HashAlgoEnum, MAX_PATH_LENGTH
+from .._base import deep_merge
+from ..constants import WarnEnum, HashAlgoEnum, ConfigFileFormatEnum, MAX_PATH_LENGTH
 
 
 logger = logging.getLogger(__name__)
@@ -479,6 +482,63 @@ async def async_read_config_file(config_path: str | Path) -> dict[str, Any]:
     return _config
 
 
+@validate_call
+async def async_read_all_configs(
+    configs_dir: str | Path | list[str | Path],
+    allowed_formats: list[ConfigFileFormatEnum] = [
+        ConfigFileFormatEnum.YAML,
+        ConfigFileFormatEnum.JSON,
+        ConfigFileFormatEnum.TOML,
+    ],
+) -> dict[str, Any]:
+    """Asynchronous read all config files from directory or directories and merge them.
+
+    Args:
+        configs_dir     (str | Path | list[str | Path], required): Configs directory or directories.
+        allowed_formats (list[ConfigFileFormatEnum]   , optional): Allowed config file formats to read.
+                                                                    Defaults to [YAML, JSON, TOML].
+
+    Returns:
+        dict[str, Any]: Dictionary containing all merged config data from all files.
+    """
+
+    _config_dict: dict[str, Any] = {}
+
+    if not isinstance(configs_dir, list):
+        configs_dir = [configs_dir]
+
+    _file_paths: list[str] = []
+    for _config_dir in configs_dir:
+        if isinstance(_config_dir, str):
+            _config_dir = Path(_config_dir)
+
+        if not os.path.isabs(_config_dir):
+            _current_dir = await aiofiles.os.getcwd()
+            _config_dir = os.path.join(_current_dir, _config_dir)
+
+        if await aiofiles.os.path.isdir(_config_dir):
+            if ConfigFileFormatEnum.YAML in allowed_formats:
+                _file_paths.extend(glob.glob(os.path.join(_config_dir, "*.yaml")))
+                _file_paths.extend(glob.glob(os.path.join(_config_dir, "*.yml")))
+
+            if ConfigFileFormatEnum.JSON in allowed_formats:
+                _file_paths.extend(glob.glob(os.path.join(_config_dir, "*.json")))
+
+            if ConfigFileFormatEnum.TOML in allowed_formats:
+                _file_paths.extend(glob.glob(os.path.join(_config_dir, "*.toml")))
+
+            if ConfigFileFormatEnum.INI in allowed_formats:
+                _file_paths.extend(glob.glob(os.path.join(_config_dir, "*.ini")))
+                _file_paths.extend(glob.glob(os.path.join(_config_dir, "*.cfg")))
+
+    _file_paths.sort()
+    for _file_path in _file_paths:
+        _config_data = await async_read_config_file(config_path=_file_path)
+        _config_dict = deep_merge(_config_dict, _config_data)
+
+    return _config_dict
+
+
 __all__ = [
     "async_create_dir",
     "async_remove_dir",
@@ -491,4 +551,5 @@ __all__ = [
     "async_read_toml_file",
     "async_read_ini_file",
     "async_read_config_file",
+    "async_read_all_configs",
 ]

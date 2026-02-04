@@ -24,8 +24,16 @@ class HashAlgoEnum(str, Enum):
     sha512 = "sha512"
 
 
+class ConfigFileFormatEnum(str, Enum):
+    YAML = "YAML"
+    JSON = "JSON"
+    TOML = "TOML"
+    INI = "INI"
+
+
 __all__ = [
     "WarnEnum",
     "TSUnitEnum",
     "HashAlgoEnum",
+    "ConfigFileFormatEnum",
 ]
