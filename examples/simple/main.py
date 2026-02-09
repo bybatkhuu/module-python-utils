@@ -17,7 +17,6 @@ import potato_util.secure as secure_utils
 import potato_util.validator as validator_utils
 import potato_util.http as http_utils
 
-
 logger = logging.getLogger(__name__)
 
 

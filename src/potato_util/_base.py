@@ -8,7 +8,6 @@ from pydantic import validate_call
 
 from .validator import is_truthy
 
-
 logger = logging.getLogger(__name__)
 
 

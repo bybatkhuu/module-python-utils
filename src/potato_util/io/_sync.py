@@ -26,7 +26,6 @@ from pydantic import validate_call
 from .._base import deep_merge
 from ..constants import WarnEnum, HashAlgoEnum, ConfigFileFormatEnum, MAX_PATH_LENGTH
 
-
 logger = logging.getLogger(__name__)
 
 

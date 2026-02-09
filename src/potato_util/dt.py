@@ -7,7 +7,6 @@ from pydantic import validate_call
 
 from .constants import WarnEnum, TSUnitEnum
 
-
 logger = logging.getLogger(__name__)
 
 
