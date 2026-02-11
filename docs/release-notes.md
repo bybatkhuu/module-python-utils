@@ -1,10 +1,21 @@
 ---
-title: "Release Notes"
+title: Release Notes
 hide:
   - navigation
 ---
 
 # 📌 Release Notes
+
+## v0.3.1 (2026-02-11)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.3.1 -->
+
+## What's Changed
+### 🐛 Fixes
+* fix: correct indentation for sorting file paths in read_all_configs f… by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/13
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.3.0...v0.3.1
 
 ## v0.3.0 (2026-02-04)
 
