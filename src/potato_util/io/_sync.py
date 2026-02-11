@@ -515,7 +515,8 @@ def read_all_configs(
                 _file_paths.extend(glob.glob(os.path.join(_config_dir, "*.ini")))
                 _file_paths.extend(glob.glob(os.path.join(_config_dir, "*.cfg")))
 
-    _file_paths.sort()
+        _file_paths.sort()
+
     for _file_path in _file_paths:
         _config_data = read_config_file(config_path=_file_path)
         _config_dict = deep_merge(_config_dict, _config_data)
