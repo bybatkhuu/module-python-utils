@@ -1,6 +1,16 @@
 from enum import Enum
 
 
+class EnvEnum(str, Enum):
+    LOCAL = "LOCAL"
+    DEVELOPMENT = "DEVELOPMENT"
+    TEST = "TEST"
+    DEMO = "DEMO"
+    DOCS = "DOCS"
+    STAGING = "STAGING"
+    PRODUCTION = "PRODUCTION"
+
+
 class WarnEnum(str, Enum):
     ERROR = "ERROR"
     ALWAYS = "ALWAYS"
@@ -31,9 +41,26 @@ class ConfigFileFormatEnum(str, Enum):
     INI = "INI"
 
 
+class LanguageEnum(str, Enum):
+    en = "en"
+    ko = "ko"
+    mn = "mn"
+    uz = "uz"
+
+
+class CurrencyEnum(str, Enum):
+    USD = "USD"
+    KRW = "KRW"
+    MNT = "MNT"
+    UZS = "UZS"
+
+
 __all__ = [
+    "EnvEnum",
     "WarnEnum",
     "TSUnitEnum",
     "HashAlgoEnum",
     "ConfigFileFormatEnum",
+    "LanguageEnum",
+    "CurrencyEnum",
 ]
