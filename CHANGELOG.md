@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.4.0 (2026-02-23)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.4.0 -->
+
+## What's Changed
+### ✨ Features
+* feat: add new enums for languages and currencies; enhance regex patte… by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/14
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.3.1...v0.4.0
+
 ## v0.3.1 (2026-02-11)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.3.1 -->
