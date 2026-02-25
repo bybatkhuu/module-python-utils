@@ -2,7 +2,7 @@ import hashlib
 
 from pydantic import validate_call
 
-from .constants import HashAlgoEnum
+from ..constants import HashAlgoEnum
 
 
 @validate_call

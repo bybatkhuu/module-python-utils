@@ -13,7 +13,6 @@ import potato_util
 import potato_util.dt as dt_utils
 import potato_util.generator as gen_utils
 import potato_util.sanitizer as sanitizer_utils
-import potato_util.secure as secure_utils
 import potato_util.validator as validator_utils
 import potato_util.http as http_utils
 
@@ -107,13 +106,6 @@ def main() -> None:
     _raw_str = "Hello@World! This is a test_string with special#chars$%&*()[]{};:'\",.<>?/\\|`~"
     _sanitized_str = sanitizer_utils.sanitize_special_chars(val=_raw_str, mode="STRICT")
     logger.info(f"Sanitized string: {_sanitized_str}")
-    logger.info("-" * 80)
-
-    # Secure utils:
-    logger.info("[SECURE UTILITIES]")
-    _input_str = "SensitiveInformation123!"
-    _hashed_str_sha256 = secure_utils.hash_str(val=_input_str, algorithm="sha256")
-    logger.info(f"SHA-256 hashed string: {_hashed_str_sha256}")
     logger.info("-" * 80)
 
     # Validator utils:

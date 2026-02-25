@@ -41,6 +41,11 @@ class ConfigFileFormatEnum(str, Enum):
     INI = "INI"
 
 
+class HTTPSchemeEnum(str, Enum):
+    http = "http"
+    https = "https"
+
+
 class LanguageEnum(str, Enum):
     en = "en"
     ko = "ko"
@@ -61,6 +66,7 @@ __all__ = [
     "TSUnitEnum",
     "HashAlgoEnum",
     "ConfigFileFormatEnum",
+    "HTTPSchemeEnum",
     "LanguageEnum",
     "CurrencyEnum",
 ]
