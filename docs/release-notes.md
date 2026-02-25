@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v0.5.0 (2026-02-25)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.5.0 -->
+
+## What's Changed
+### ✨ Features
+* feat(crypto): add asymmetric, symmetric, hashing, JWT, and password u… by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/15
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.4.0...v0.5.0
+
 ## v0.4.0 (2026-02-23)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.4.0 -->
