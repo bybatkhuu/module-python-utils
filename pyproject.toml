@@ -34,15 +34,18 @@ dependencies = { file = "./requirements.txt" }
 
 [tool.setuptools.dynamic.optional-dependencies]
 async = { file = ["./requirements/requirements.async.txt"] }
+crypto = { file = ["./requirements/requirements.crypto.txt"] }
 fastapi = { file = ["./requirements/requirements.fastapi.txt"] }
 all = { file = [
 	"./requirements/requirements.async.txt",
+	"./requirements/requirements.crypto.txt",
 	"./requirements/requirements.fastapi.txt",
 ] }
 
 # Optional dependencies for DEVELOPMENT
 test = { file = [
 	"./requirements/requirements.async.txt",
+	"./requirements/requirements.crypto.txt",
 	"./requirements/requirements.fastapi.txt",
 	"./requirements/requirements.test.txt",
 ] }
@@ -50,6 +53,7 @@ build = { file = ["./requirements/requirements.build.txt"] }
 docs = { file = ["./requirements/requirements.docs.txt"] }
 dev = { file = [
 	"./requirements/requirements.async.txt",
+	"./requirements/requirements.crypto.txt",
 	"./requirements/requirements.fastapi.txt",
 	"./requirements/requirements.test.txt",
 	"./requirements/requirements.build.txt",
