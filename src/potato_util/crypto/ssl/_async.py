@@ -28,8 +28,8 @@ logger = logging.getLogger(__name__)
 @validate_call
 async def async_create_ssl_certs(
     ssl_dir: str,
-    cert_fname: str,
     key_fname: str,
+    cert_fname: str,
     key_size: int,
     x509_attrs: X509AttrsPM | dict[str, Any] = X509AttrsPM(),
     force: bool = False,
@@ -39,8 +39,8 @@ async def async_create_ssl_certs(
 
     Args:
         ssl_dir    (str                         , required): SSL directory path.
-        cert_fname (str                         , required): Certificate file name.
         key_fname  (str                         , required): Key file name.
+        cert_fname (str                         , required): Certificate file name.
         key_size   (int                         , required): Key size.
         x509_attrs (X509AttrsPM | dict[str, Any], optional): X509 named attributes. Defaults to X509AttrsPM().
         force      (bool                        , optional): Force to create SSL key and cert files. Defaults to False.
@@ -70,11 +70,11 @@ async def async_create_ssl_certs(
         )
         return
 
-    _meesage = f"Generating SSL key and cert files: ['{_key_path}', '{_cert_path}']..."
+    _message = f"Generating SSL key and cert files: ['{_key_path}', '{_cert_path}']..."
     if warn_mode == WarnEnum.ALWAYS:
-        logger.info(_meesage)
+        logger.info(_message)
     elif warn_mode == WarnEnum.DEBUG:
-        logger.debug(_meesage)
+        logger.debug(_message)
 
     _private_key: RSAPrivateKey | PrivateKeyTypes
     if await aiofiles.os.path.isfile(_key_path):
