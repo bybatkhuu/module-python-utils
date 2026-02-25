@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v0.5.1 (2026-02-25)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.5.1 -->
+
+## What's Changed
+### 🐛 Fixes
+* fix: reorder parameters in async_create_ssl_certs and correct typo in… by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/16
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.5.0...v0.5.1
+
 ## v0.5.0 (2026-02-25)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.5.0 -->
