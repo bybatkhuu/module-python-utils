@@ -46,6 +46,18 @@ class HTTPSchemeEnum(str, Enum):
     https = "https"
 
 
+class HTTPMethodEnum(str, Enum):
+    GET = "GET"
+    POST = "POST"
+    PUT = "PUT"
+    PATCH = "PATCH"
+    DELETE = "DELETE"
+    HEAD = "HEAD"
+    OPTIONS = "OPTIONS"
+    CONNECT = "CONNECT"
+    TRACE = "TRACE"
+
+
 class LanguageEnum(str, Enum):
     en = "en"
     ko = "ko"
@@ -67,6 +79,7 @@ __all__ = [
     "HashAlgoEnum",
     "ConfigFileFormatEnum",
     "HTTPSchemeEnum",
+    "HTTPMethodEnum",
     "LanguageEnum",
     "CurrencyEnum",
 ]
