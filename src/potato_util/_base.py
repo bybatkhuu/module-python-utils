@@ -88,8 +88,11 @@ def is_debug_mode() -> bool:
 
     _is_debug = False
     _debug = os.getenv("DEBUG", "").strip().lower()
-    if _debug and is_truthy(_debug):
-        _is_debug = True
+    try:
+        if _debug and is_truthy(_debug):
+            _is_debug = True
+    except ValueError:
+        pass
 
     _env = os.getenv("ENV", "").strip().lower()
     if (_env == "development") and (_debug == ""):
