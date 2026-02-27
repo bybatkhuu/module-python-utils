@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.5.3 (2026-02-27)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.5.3 -->
+
+## What's Changed
+### 🐛 Fixes
+* fix: handle ValueError in is_debug_mode function by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/17
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.5.2...v0.5.3
+
 ## v0.5.2 (2026-02-26)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.5.2 -->
