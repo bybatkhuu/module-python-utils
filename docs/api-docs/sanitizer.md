@@ -1,5 +1,5 @@
 ---
-title: Sanitizer Utilities
+title: "Sanitizer Utilities"
 ---
 
 # Sanitizer Utilities

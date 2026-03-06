@@ -1,5 +1,5 @@
 ---
-title: Symmetric Encryption
+title: "Symmetric Encryption"
 ---
 
 # Symmetric Encryption Utilities
