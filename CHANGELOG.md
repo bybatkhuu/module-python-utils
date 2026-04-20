@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.6.0 (2026-04-20)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.6.0 -->
+
+## What's Changed
+### 📦 Dependencies
+* chore(deps-dev): update setuptools-scm requirement from <10.0.0,>=8.0.4 to >=8.0.4,<11.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/18
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.5.3...v0.6.0
+
 ## v0.5.3 (2026-02-27)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.5.3 -->
