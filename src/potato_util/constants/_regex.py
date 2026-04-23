@@ -1,5 +1,7 @@
 # Valid characters:
 NUMERIC_REGEX = r"^[0-9]+$"
+ALPHABET_REGEX = r"^[a-zA-Z]+$"
+ALPHABET_HYPHEN_REGEX = r"^[a-zA-Z_\-]+$"
 
 ALPHANUM_REGEX = r"^[0-9a-zA-Z]+$"
 ALPHANUM_SPACE_REGEX = r"^[0-9a-zA-Z ]+$"
@@ -17,6 +19,8 @@ ALPHANUM_KR_MN_PATH_REGEX = r"^[0-9a-zA-Z가-힣А-яҮүӨөЁё_\-. \\\/]+$"
 
 ALPHANUM_TEXT_REGEX = r"^[0-9a-zA-Z_\-.\s]*$"  # Allow empty string, tabs, and newlines
 ALPHANUM_EMPTY_EXTEND_REGEX = r"^[0-9a-zA-Z_\-. ]*$"  # Allow empty string
+
+BASE_ENCRYPTED_REGEX = r"^[0-9a-zA-Z.\/\+=]+$"
 
 REQUEST_ID_REGEX = (
     r"\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\b|"
@@ -38,6 +42,9 @@ SPECIAL_CHARS_STRICT_REGEX = r"[&'\"<>\\\/`{}|()\[\]~!@#$%^*_=\-+;:,.?\t\n ]"
 
 
 __all__ = [
+    "NUMERIC_REGEX",
+    "ALPHABET_REGEX",
+    "ALPHABET_HYPHEN_REGEX",
     "ALPHANUM_REGEX",
     "ALPHANUM_SPACE_REGEX",
     "ALPHANUM_HYPHEN_REGEX",
@@ -50,9 +57,9 @@ __all__ = [
     "ALPHANUM_KR_MN_HOST_REGEX",
     "ALPHANUM_KR_MN_EXTEND_REGEX",
     "ALPHANUM_KR_MN_PATH_REGEX",
-    "NUMERIC_REGEX",
     "ALPHANUM_TEXT_REGEX",
     "ALPHANUM_EMPTY_EXTEND_REGEX",
+    "BASE_ENCRYPTED_REGEX",
     "REQUEST_ID_REGEX",
     "HTTP_METHOD_REGEX",
     "ASYMMETRIC_ALGORITHM_REGEX",
