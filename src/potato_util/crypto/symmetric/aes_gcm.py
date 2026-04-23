@@ -10,11 +10,37 @@ from ...constants import WarnEnum
 logger = logging.getLogger(__name__)
 
 
-@validate_call(config={"arbitrary_types_allowed": True})
+@validate_call
+def gen_key(
+    bit_length: int = 256, return_str: bool = False, base64_encode: bool = True
+) -> str | bytes:
+    """Generates a random AES-GCM key.
+
+    Args:
+        bit_length    (int, optional): The length of the key in bits. Defaults to 256 (32 bytes).
+        return_str    (bool, optional): Whether to return the key as a string. Defaults to False.
+        base64_encode (bool, optional): Whether to base64 encode the key if returning as a string. Defaults to True.
+
+    Returns:
+        str | bytes: The generated AES-GCM key.
+    """
+
+    _key = AESGCM.generate_key(bit_length=bit_length)
+    if return_str:
+        if base64_encode:
+            _key = base64.b64encode(_key).decode()
+        else:
+            _key = _key.hex()
+
+    return _key
+
+
+@validate_call
 def encrypt(
     key: bytes,
     plaintext: str | bytes,
     aad: str | bytes | None = None,
+    nonce_nbytes: int = 12,
     base64_encode: bool = False,
     return_str: bool = False,
     warn_mode: WarnEnum = WarnEnum.DEBUG,
@@ -25,6 +51,7 @@ def encrypt(
         key           (bytes             , required): The encryption key.
         plaintext     (str | bytes       , required): The data to be encrypted.
         aad           (str | bytes | None, optional): Additional authenticated data. Defaults to None.
+        nonce_nbytes  (int               , optional): The number of bytes for the nonce. Defaults to 12.
         base64_encode (bool              , optional): Whether to base64 encode the nonce and ciphertext.
                                                         Defaults to False.
         return_str    (bool              , optional): Whether to return the result as a string. Defaults to False.
@@ -53,7 +80,7 @@ def encrypt(
     _ciphertext: str | bytes
     try:
         _aes_gcm = AESGCM(key=key)
-        _nonce = secrets.token_bytes(nbytes=12)
+        _nonce = secrets.token_bytes(nbytes=nonce_nbytes)
         _ciphertext = _aes_gcm.encrypt(
             nonce=_nonce, data=plaintext, associated_data=aad
         )
@@ -84,7 +111,7 @@ def encrypt(
     return _nonce, _ciphertext
 
 
-@validate_call(config={"arbitrary_types_allowed": True})
+@validate_call
 def decrypt(
     key: bytes,
     nonce: str | bytes,
@@ -160,6 +187,7 @@ def decrypt(
 
 
 __all__ = [
+    "gen_key",
     "encrypt",
     "decrypt",
 ]
