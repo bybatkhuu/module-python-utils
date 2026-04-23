@@ -5,13 +5,13 @@ from cryptography.hazmat.primitives import ciphers
 from cryptography.hazmat.primitives.ciphers import algorithms, modes
 from pydantic import validate_call
 
-from ..constants import WarnEnum
+from ...constants import WarnEnum
 
 logger = logging.getLogger(__name__)
 
 
 @validate_call(config={"arbitrary_types_allowed": True})
-def decrypt_aes_cbc(
+def decrypt(
     ciphertext: str | bytes,
     key: bytes,
     iv: bytes,
@@ -79,5 +79,5 @@ def decrypt_aes_cbc(
 
 
 __all__ = [
-    "decrypt_aes_cbc",
+    "decrypt",
 ]
