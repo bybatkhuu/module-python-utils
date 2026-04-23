@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v0.7.0 (2026-04-23)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.7.0 -->
+
+## What's Changed
+### ✨ Features
+* feat(crypto): implement AES-CBC and AES-GCM encryption/decryption fun… by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/29
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.6.0...v0.7.0
+
 ## v0.6.0 (2026-04-20)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.6.0 -->
