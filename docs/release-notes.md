@@ -6,6 +6,14 @@ hide:
 
 # 📌 Release Notes
 
+## v0.7.1 (2026-04-23)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.7.1 -->
+
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.7.0...v0.7.1
+
 ## v0.7.0 (2026-04-23)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.7.0 -->
