@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.7.2 (2026-04-26)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.7.2 -->
+
+## What's Changed
+### 🐛 Fixes
+* Fix: removed unnecessary base64 decoding of aad in decryption of aes-gsm by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/40
+### 📦 Dependencies
+* chore(deps): update pytest-benchmark requirement from <6.0.0,>=5.0.1 to >=5.2.3,<6.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/39
+* chore(deps): update pyjwt requirement from <3.0.0,>=2.10.1 to >=2.12.1,<3.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/36
+* chore(deps): update argon2-cffi-bindings requirement from <30.0.0,>=21.2.0 to >=25.1.0,<30.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/34
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.7.1...v0.7.2
+
 ## v0.7.1 (2026-04-23)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.7.1 -->
