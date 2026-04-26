@@ -152,7 +152,6 @@ def decrypt(
     if base64_decode:
         nonce = base64.b64decode(nonce)
         ciphertext = base64.b64decode(ciphertext)
-        aad = base64.b64decode(aad) if aad else None
 
     _message = "Decrypting ciphertext using AES-GCM key and nonce..."
     if warn_mode == WarnEnum.ALWAYS:
