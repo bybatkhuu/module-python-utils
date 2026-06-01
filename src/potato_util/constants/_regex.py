@@ -8,6 +8,7 @@ ALPHANUM_SPACE_REGEX = r"^[0-9a-zA-Z ]+$"
 ALPHANUM_HYPHEN_REGEX = r"^[0-9a-zA-Z_\-]+$"
 ALPHANUM_HOST_REGEX = r"^[0-9a-zA-Z_\-.]+$"
 ALPHANUM_EXTEND_REGEX = r"^[0-9a-zA-Z_\-. ]+$"
+ALPHANUM_SCOPE_REGEX = r"^[0-9a-zA-Z_\-.:\*]+$"
 ALPHANUM_PATH_REGEX = r"^[0-9a-zA-Z_\-. \\\/]+$"
 
 ALPHANUM_KR_MN_REGEX = r"^[0-9a-zA-Z가-힣А-яҮүӨөЁё]+$"
@@ -50,6 +51,7 @@ __all__ = [
     "ALPHANUM_HYPHEN_REGEX",
     "ALPHANUM_HOST_REGEX",
     "ALPHANUM_EXTEND_REGEX",
+    "ALPHANUM_SCOPE_REGEX",
     "ALPHANUM_PATH_REGEX",
     "ALPHANUM_KR_MN_REGEX",
     "ALPHANUM_KR_MN_SPACE_REGEX",
