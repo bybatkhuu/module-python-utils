@@ -6,9 +6,7 @@ from ..constants import HashAlgoEnum
 
 
 @validate_call
-def hash_str(
-    val: str | bytes, algorithm: HashAlgoEnum | str = HashAlgoEnum.sha256
-) -> str:
+def hash(val: str | bytes, algorithm: HashAlgoEnum | str = HashAlgoEnum.sha256) -> str:
     """Hash a string using a specified hash algorithm.
 
     Args:
@@ -33,5 +31,5 @@ def hash_str(
 
 
 __all__ = [
-    "hash_str",
+    "hash",
 ]
