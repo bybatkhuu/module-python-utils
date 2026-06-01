@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.8.0 (2026-06-01)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.8.0 -->
+
+## What's Changed
+### ✨ Features
+* Remove todo-tree extension and add ALPHANUM_SCOPE_REGEX by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/53
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.7.3...v0.8.0
+
 ## v0.7.3 (2026-05-25)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.7.3 -->
