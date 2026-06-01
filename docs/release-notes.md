@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v0.8.1 (2026-06-01)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.8.1 -->
+
+## What's Changed
+### 🐛 Fixes
+* Rename hash_str to hash for consistency by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/54
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.8.0...v0.8.1
+
 ## v0.8.0 (2026-06-01)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.8.0 -->
