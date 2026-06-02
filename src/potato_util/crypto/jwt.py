@@ -1,11 +1,14 @@
-from typing import Any
+from typing import Any, TypeAlias
 
 import jwt
-from jwt.types import Options
-from jwt.api_jwt import AllowedPrivateKeyTypes, AllowedPublicKeyTypes
+from jwt import PyJWK
+from jwt.algorithms import AllowedPrivateKeys, AllowedPublicKeys
 from pydantic import validate_call, SecretStr
 
 from ..dt import now_utc_dt
+
+AllowedPrivateKeyTypes: TypeAlias = AllowedPrivateKeys | PyJWK | str | bytes
+AllowedPublicKeyTypes: TypeAlias = AllowedPublicKeys | PyJWK | str | bytes
 
 
 @validate_call(config={"arbitrary_types_allowed": True})
@@ -52,7 +55,7 @@ def decode(
     token: str,
     key: SecretStr | AllowedPublicKeyTypes,
     algorithm: str,
-    options: Options = {},
+    options: dict[str, Any] = {},
 ) -> dict[str, Any]:
     """Decodes JWT token and returns payload.
 
@@ -76,7 +79,7 @@ def decode(
     if isinstance(key, SecretStr):
         key = key.get_secret_value()
 
-    _payload = jwt.decode(jwt=token, key=key, algorithms=[algorithm], options=options)
+    _payload = jwt.decode(jwt=token, key=key, algorithms=[algorithm], options=options)  # type: ignore
     return _payload
 
 
