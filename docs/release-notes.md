@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v0.9.0 (2026-06-02)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.9.0 -->
+
+## What's Changed
+### ✨ Features
+* feat: add ALPHANUM_TZ_REGEX and update BASE_ENCRYPTED_REGEX format by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/56
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.8.2...v0.9.0
+
 ## v0.8.2 (2026-06-02)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.8.2 -->
