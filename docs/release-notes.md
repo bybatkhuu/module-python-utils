@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v0.8.2 (2026-06-02)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.8.2 -->
+
+## What's Changed
+### 🐛 Fixes
+* fix: add JWT utilities for signing, encoding, and decoding tokens by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/55
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.8.1...v0.8.2
+
 ## v0.8.1 (2026-06-01)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.8.1 -->
