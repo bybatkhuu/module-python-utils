@@ -8,6 +8,7 @@ ALPHANUM_SPACE_REGEX = r"^[0-9a-zA-Z ]+$"
 ALPHANUM_HYPHEN_REGEX = r"^[0-9a-zA-Z_\-]+$"
 ALPHANUM_HOST_REGEX = r"^[0-9a-zA-Z_\-.]+$"
 ALPHANUM_EXTEND_REGEX = r"^[0-9a-zA-Z_\-. ]+$"
+ALPHANUM_TZ_REGEX = r"^[0-9a-zA-Z_\-\/\+]+$"
 ALPHANUM_SCOPE_REGEX = r"^[0-9a-zA-Z_\-.:\*]+$"
 ALPHANUM_PATH_REGEX = r"^[0-9a-zA-Z_\-. \\\/]+$"
 
@@ -21,7 +22,7 @@ ALPHANUM_KR_MN_PATH_REGEX = r"^[0-9a-zA-Z가-힣А-яҮүӨөЁё_\-. \\\/]+$"
 ALPHANUM_TEXT_REGEX = r"^[0-9a-zA-Z_\-.\s]*$"  # Allow empty string, tabs, and newlines
 ALPHANUM_EMPTY_EXTEND_REGEX = r"^[0-9a-zA-Z_\-. ]*$"  # Allow empty string
 
-BASE_ENCRYPTED_REGEX = r"^[0-9a-zA-Z.\/\+=]+$"
+BASE_ENCRYPTED_REGEX = r"^[0-9a-zA-Z._\-/\+=]+$"
 
 REQUEST_ID_REGEX = (
     r"\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\b|"
@@ -51,6 +52,7 @@ __all__ = [
     "ALPHANUM_HYPHEN_REGEX",
     "ALPHANUM_HOST_REGEX",
     "ALPHANUM_EXTEND_REGEX",
+    "ALPHANUM_TZ_REGEX",
     "ALPHANUM_SCOPE_REGEX",
     "ALPHANUM_PATH_REGEX",
     "ALPHANUM_KR_MN_REGEX",
