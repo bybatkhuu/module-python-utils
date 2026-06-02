@@ -4,9 +4,11 @@
 import os
 import sys
 import logging
+import uuid
 
 # Third-party libraries
 from pydantic import AnyHttpUrl
+import jwt
 
 # Internal modules
 import potato_util
@@ -15,6 +17,7 @@ import potato_util.generator as gen_utils
 import potato_util.sanitizer as sanitizer_utils
 import potato_util.validator as validator_utils
 import potato_util.http as http_utils
+import potato_util.crypto.jwt as jwt_utils
 
 logger = logging.getLogger(__name__)
 
@@ -154,6 +157,34 @@ def main() -> None:
     _is_connectable = http_utils.is_connectable(url=_url, timeout=3, check_status=True)
     logger.info(f"Is '{_url}' connectable: {_is_connectable}")
     logger.info("-" * 80)
+
+    # JWT utils:
+    logger.info("[JWT UTILITIES]")
+    _jwt_secret_key = "gkPCAwVTvWEaXd64Oc1HvwYblJSFVQAH"  # pragma: allowlist secret
+    logger.info(f"Signing and encoding JWT token with secret key: {_jwt_secret_key}")
+    _jwt_payload = {
+        "sub": "user123",
+        "exp": dt_utils.now_ts() + 3600,
+        "iat": dt_utils.now_utc_dt(),
+        "jti": uuid.uuid4().hex,
+    }
+    _token = jwt_utils.encode(
+        payload=_jwt_payload, key=_jwt_secret_key, algorithm="HS256"
+    )
+    logger.info(f"Signed and encoded JWT token: {_token}")
+
+    logger.info("Verifying and decoding JWT token...")
+    try:
+        _jwt_decoded_payload = jwt_utils.decode(
+            token=_token,
+            key=_jwt_secret_key,
+            algorithm="HS256",
+        )
+        logger.info(f"Decoded JWT payload: {_jwt_decoded_payload}")
+    except jwt.ExpiredSignatureError:
+        logger.error("JWT token is expired!")
+    except jwt.InvalidTokenError:
+        logger.error("JWT token is invalid!")
 
     return
 
