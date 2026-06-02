@@ -160,7 +160,9 @@ def main() -> None:
 
     # JWT utils:
     logger.info("[JWT UTILITIES]")
-    _jwt_secret_key = "gkPCAwVTvWEaXd64Oc1HvwYblJSFVQAH"  # pragma: allowlist secret
+    _jwt_secret_key = (
+        "gkPCAwVTvWEaXd64Oc1HvwYblJSFVQAH"  # pragma: allowlist secret # nosec B105
+    )
     logger.info(f"Signing and encoding JWT token with secret key: {_jwt_secret_key}")
     _jwt_payload = {
         "sub": "user123",
