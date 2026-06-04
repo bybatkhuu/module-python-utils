@@ -24,6 +24,7 @@ ALPHANUM_EMPTY_EXTEND_REGEX = r"^[0-9a-zA-Z_\-. ]*$"  # Allow empty string
 
 BASE_ENCRYPTED_REGEX = r"^[0-9a-zA-Z._\-/\+=]+$"
 
+JWT_REGEX = r"^[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+$"
 REQUEST_ID_REGEX = (
     r"\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\b|"
     r"\b[0-9a-fA-F]{32}\b"
@@ -64,6 +65,7 @@ __all__ = [
     "ALPHANUM_TEXT_REGEX",
     "ALPHANUM_EMPTY_EXTEND_REGEX",
     "BASE_ENCRYPTED_REGEX",
+    "JWT_REGEX",
     "REQUEST_ID_REGEX",
     "HTTP_METHOD_REGEX",
     "ASYMMETRIC_ALGORITHM_REGEX",
