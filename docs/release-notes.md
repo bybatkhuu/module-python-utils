@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v0.10.0 (2026-06-04)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.10.0 -->
+
+## What's Changed
+### ✨ Features
+* Add JWT regext and base URL extraction function by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/57
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.9.0...v0.10.0
+
 ## v0.9.0 (2026-06-02)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.9.0 -->
