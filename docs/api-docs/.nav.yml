@@ -1,3 +1,4 @@
 nav:
   - "*"
+  - HTTP Utilities: http/
   - Crypto Utilities: crypto/

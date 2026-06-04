@@ -144,9 +144,11 @@ cp -r ./src/potato_util /some/path/project/
 import os
 import sys
 import logging
+import uuid
 
 # Third-party libraries
 from pydantic import AnyHttpUrl
+import jwt
 
 # Internal modules
 import potato_util
@@ -155,6 +157,7 @@ import potato_util.generator as gen_utils
 import potato_util.sanitizer as sanitizer_utils
 import potato_util.validator as validator_utils
 import potato_util.http as http_utils
+import potato_util.crypto.jwt as jwt_utils
 
 logger = logging.getLogger(__name__)
 
