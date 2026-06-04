@@ -33,10 +33,6 @@
          <lastmod>2026-06-04</lastmod>
     </url>
     <url>
-         <loc>https://pyutils-docs.bybatkhuu.dev/0.10/api-docs/http/</loc>
-         <lastmod>2026-06-04</lastmod>
-    </url>
-    <url>
          <loc>https://pyutils-docs.bybatkhuu.dev/0.10/api-docs/io/</loc>
          <lastmod>2026-06-04</lastmod>
     </url>
@@ -70,6 +66,14 @@
     </url>
     <url>
          <loc>https://pyutils-docs.bybatkhuu.dev/0.10/api-docs/crypto/symmetric/</loc>
+         <lastmod>2026-06-04</lastmod>
+    </url>
+    <url>
+         <loc>https://pyutils-docs.bybatkhuu.dev/0.10/api-docs/http/</loc>
+         <lastmod>2026-06-04</lastmod>
+    </url>
+    <url>
+         <loc>https://pyutils-docs.bybatkhuu.dev/0.10/api-docs/http/fastapi/</loc>
          <lastmod>2026-06-04</lastmod>
     </url>
     <url>
