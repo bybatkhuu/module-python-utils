@@ -6,6 +6,18 @@ hide:
 
 # 📌 Release Notes
 
+## v0.10.1 (2026-06-17)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.10.1 -->
+
+## What's Changed
+### 📦 Dependencies
+* chore(deps): update cryptography requirement from <49.0.0,>=44.0.3 to >=44.0.3,<50.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/58
+* patch: updated cryptography dependency range. by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/59
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.10.0...v0.10.1
+
 ## v0.10.0 (2026-06-04)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.10.0 -->
