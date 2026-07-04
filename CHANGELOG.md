@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.11.0 (2026-07-04)
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.11.0 -->
+
+## What's Changed
+### 💥 Breaking Changes
+* chore(deps): bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/60
+### ✨ Features
+* Bump actions/checkout to version 7 and add regex patterns for BT wallet addresses by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/61
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.10.1...v0.11.0
+
 ## v0.10.1 (2026-06-17)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.10.1 -->
