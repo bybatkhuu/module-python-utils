@@ -1,5 +1,6 @@
 # Valid characters:
 NUMERIC_REGEX = r"^[0-9]+$"
+HEX_REGEX = r"^[0-9a-fA-F]+$"
 ALPHABET_REGEX = r"^[a-zA-Z]+$"
 ALPHABET_HYPHEN_REGEX = r"^[a-zA-Z_\-]+$"
 
@@ -49,6 +50,7 @@ SPECIAL_CHARS_STRICT_REGEX = r"[&'\"<>\\\/`{}|()\[\]~!@#$%^*_=\-+;:,.?\t\n ]"
 
 __all__ = [
     "NUMERIC_REGEX",
+    "HEX_REGEX",
     "ALPHABET_REGEX",
     "ALPHABET_HYPHEN_REGEX",
     "ALPHANUM_REGEX",

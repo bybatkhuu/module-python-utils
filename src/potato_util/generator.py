@@ -32,15 +32,23 @@ def gen_unique_id(prefix: str = "") -> str:
 
 
 @validate_call
-def gen_random_string(length: int = 16, is_alphanum: bool = True) -> str:
+def gen_random_string(
+    length: int = 16,
+    digits: bool = True,
+    ascii_letters: bool = True,
+    punctuation: bool = False,
+) -> str:
     """Generate secure random string.
 
     Args:
-        length      (int , optional): Length of random string. Defaults to 16.
-        is_alphanum (bool, optional): If True, generate only alphanumeric string. Defaults to True.
+        length        (int , optional): Length of random string. Defaults to 16.
+        digits        (bool, optional): If True, include digits. Defaults to True.
+        ascii_letters (bool, optional): If True, include ASCII letters. Defaults to True.
+        punctuation   (bool, optional): If True, include punctuation characters. Defaults to False.
 
     Raises:
         ValueError: If `length` is less than 1.
+        ValueError: If all of `digits`, `ascii_letters`, and `punctuation` are False.
 
     Returns:
         str: Generated random string.
@@ -51,11 +59,20 @@ def gen_random_string(length: int = 16, is_alphanum: bool = True) -> str:
             f"`length` argument value {length} is too small, must be greater than or equal to 1!",
         )
 
-    _base_chars = string.ascii_letters + string.digits
-    if not is_alphanum:
+    _base_chars = ""
+    if digits:
+        _base_chars += string.digits
+    if ascii_letters:
+        _base_chars += string.ascii_letters
+    if punctuation:
         _base_chars += string.punctuation
 
-    _random_str = "".join(secrets.choice(_base_chars) for _i in range(length))
+    if not _base_chars:
+        raise ValueError(
+            "At least one of `digits`, `ascii_letters`, or `punctuation` must be True!"
+        )
+
+    _random_str = "".join(secrets.choice(_base_chars) for _ in range(length))
     return _random_str
 
 
