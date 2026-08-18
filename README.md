@@ -232,7 +232,7 @@ def main() -> None:
     _unique_id = gen_utils.gen_unique_id(prefix="item_")
     logger.info(f"Generated unique ID based on datetime and UUIDv4: {_unique_id}")
 
-    _random_str = gen_utils.gen_random_string(length=32, is_alphanum=False)
+    _random_str = gen_utils.gen_random_string(length=32)
     logger.info(f"Generated secure random string: {_random_str}")
     logger.info("-" * 80)
 
