@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.0.0 (2026-08-18)
+
+<!-- Release notes generated using configuration in .github/release.yml at v1.0.0 -->
+
+## What's Changed
+### 💥 Breaking Changes
+* chore(deps): bump actions/setup-python from 6 to 7 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/63
+* Update dependencies for cryptography and setuptools, enhance regex by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/67
+### 📦 Dependencies
+* chore(deps): update setuptools requirement from <83.0.0,>=70.3.0 to >=70.3.0,<84.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/62
+* chore(deps): update twine requirement from <7.0.0,>=6.0.1 to >=6.0.1,<8.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/64
+* chore(deps): update cryptography requirement from <50.0.0,>=44.0.3 to >=44.0.3,<51.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/65
+* chore(deps): update setuptools requirement from <84.0.0,>=70.3.0 to >=70.3.0,<85.0.0 by @dependabot[bot] in https://github.com/bybatkhuu/module-python-utils/pull/66
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v0.11.0...v1.0.0
+
 ## v0.11.0 (2026-07-04)
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.11.0 -->
