@@ -6,6 +6,19 @@ hide:
 
 # 📌 Release Notes
 
+## v1.0.1 (2026-08-19)
+
+<!-- Release notes generated using configuration in .github/release.yml at v1.0.1 -->
+
+## What's Changed
+### 🐛 Fixes
+* Fixing import error by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/69
+### 👷 CI/CD
+* Add pre-commit workflow and remove local test hooks by @bybatkhuu in https://github.com/bybatkhuu/module-python-utils/pull/68
+
+
+**Full Changelog**: https://github.com/bybatkhuu/module-python-utils/compare/v1.0.0...v1.0.1
+
 ## v1.0.0 (2026-08-18)
 
 <!-- Release notes generated using configuration in .github/release.yml at v1.0.0 -->
