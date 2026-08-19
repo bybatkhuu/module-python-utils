@@ -4,8 +4,7 @@ import importlib.util
 
 from ._sync import *
 
-_async_package_name = "aiofiles"
-_async_spec = importlib.util.find_spec(_async_package_name)
-
-if _async_spec is not None:
+if (importlib.util.find_spec("aiofiles") is not None) and (
+    importlib.util.find_spec("aioshutil") is not None
+):
     from ._async import *
