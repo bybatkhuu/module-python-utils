@@ -18,6 +18,7 @@ import potato_util.sanitizer as sanitizer_utils
 import potato_util.validator as validator_utils
 import potato_util.http as http_utils
 import potato_util.crypto.jwt as jwt_utils
+import potato_util.io as io_utils
 
 logger = logging.getLogger(__name__)
 
@@ -187,6 +188,14 @@ def main() -> None:
         logger.error("JWT token is expired!")
     except jwt.InvalidTokenError:
         logger.error("JWT token is invalid!")
+
+    logger.info("-" * 80)
+
+    # IO utils:
+    logger.info("[IO UTILITIES]")
+    io_utils.create_dir("test_dir", warn_mode="ALWAYS")
+    io_utils.remove_dir("test_dir", warn_mode="ALWAYS")
+    logger.info("-" * 80)
 
     return
 
